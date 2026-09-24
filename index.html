@@ -4,35 +4,730 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio of Khushnur Anjum tashme</title>
+    <title>Tashme — Deep Learning Researcher</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
 
-    <!-- ============================ Tailwind css ========================== -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="style.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ink: 'rgb(var(--c-ink) / <alpha-value>)',
+                        paper: 'rgb(var(--c-paper) / <alpha-value>)',
+                        muted: 'rgb(var(--c-muted) / <alpha-value>)',
+                        line: 'rgb(var(--c-line) / <alpha-value>)',
+                        leaf: 'rgb(var(--c-leaf) / <alpha-value>)',
+                        leafdark: 'rgb(var(--c-leafdark) / <alpha-value>)',
+                    },
+                    fontFamily: {
+                        display: ['Fraunces', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        };
 
-    <!-- ============================ Daisy UI ========================== -->
-
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-    <!-- ============================ Font Awesome ========================== -->
-
-    <script src="https://kit.fontawesome.com/YOUR_KIT_CODE.js" crossorigin="anonymous"></script>
-
-
+        (function () {
+            var theme = 'light';
+            try { theme = localStorage.getItem('theme') || 'light'; } catch (e) { }
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
 </head>
 
-<body>
-    <header></header>
+<body class="font-sans text-ink antialiased">
 
-    <body>
-        <section>Khushnur</section>
-        <section></section>
-        <section></section>
-        <section></section>
-        <section></section>
-    </body>
-    <footer></footer>
+    <!-- NAV -->
+    <header id="siteHeader"
+        class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-line transition-shadow duration-300">
+        <nav class="max-w-6xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between gap-6" aria-label="Main">
+            <a href="#top" class="font-display text-xl tracking-tight" aria-label="Back to top">T<span
+                    class="text-leafdark">.</span></a>
+
+            <!-- Everything else sits on the right -->
+            <div class="flex items-center gap-3 md:gap-5">
+                <ul class="hidden md:flex items-center gap-6 lg:gap-8 text-[13px] eyebrow uppercase text-ink/70">
+                    <li><a href="#top" data-spy class="nav-link hover:text-ink transition-colors">Home</a></li>
+                    <li><a href="#about" data-spy class="nav-link hover:text-ink transition-colors">About</a></li>
+                    <li><a href="#work" data-spy class="nav-link hover:text-ink transition-colors">Projects</a></li>
+                    <li><a href="#achievements" data-spy
+                            class="nav-link hover:text-ink transition-colors">Achievements</a></li>
+                </ul>
+
+                <span class="hidden md:block w-px h-5 bg-line" aria-hidden="true"></span>
+
+                <!-- Theme toggle -->
+                <button id="themeToggle" type="button" aria-label="Switch to dark mode" title="Toggle light / dark"
+                    class="w-9 h-9 rounded-full border border-line flex items-center justify-center text-ink/70 hover:text-ink hover:border-leaf hover:bg-leaf/10 transition-colors">
+                    <svg class="theme-moon w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" />
+                    </svg>
+                    <svg class="theme-sun w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="4" />
+                        <path
+                            d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+                    </svg>
+                </button>
+
+                <a href="#contact"
+                    class="hidden md:inline-flex btn btn-sm rounded-full bg-leaf hover:bg-leafdark border-none text-ink normal-case font-medium px-5 gap-1.5">
+                    Collaborate
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 17 17 7M8 7h9v9" />
+                    </svg>
+                </a>
+
+                <button id="menuBtn" type="button" aria-label="Toggle menu" aria-expanded="false"
+                    aria-controls="mobileMenu"
+                    class="md:hidden w-9 h-9 flex flex-col items-center justify-center gap-1.5">
+                    <span class="w-6 h-0.5 rounded-full bg-ink"></span>
+                    <span class="w-6 h-0.5 rounded-full bg-ink"></span>
+                    <span class="w-6 h-0.5 rounded-full bg-ink"></span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile menu-->
+        <div id="mobileMenu" class="md:hidden bg-paper">
+            <div class="border-t border-line">
+                <ul class="flex flex-col gap-1 px-6 pt-4 text-sm text-right eyebrow uppercase text-ink/100">
+                    <li><a href="#top" data-spy class="mobile-link block py-2">Home</a></li>
+                    <li><a href="#about" data-spy class="mobile-link block py-2">About</a></li>
+                    <li><a href="#work" data-spy class="mobile-link block py-2">Projects</a></li>
+                    <li><a href="#achievements" data-spy class="mobile-link block py-2">Achievements</a></li>
+                </ul>
+                <div class="px-6 pt-3 pb-5">
+                    <a href="#contact"
+                        class="btn btn rounded-lg bg-leafdark hover:bg-white border-2 border-leaf hover:border-black normal-case font-medium px-7 gap-2 text-black hover:text-leafdark">Collaborate</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="top"
+        class="max-w-6xl mx-auto px-6 md:px-10 pt-14 md:pt-20 pb-14 md:pb-20 grid md:grid-cols-2 gap-12 items-center">
+
+        <div>
+            <!-- Status badge -->
+            <span
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-line bg-white text-xs text-ink/70 mb-6">
+                <span class="relative flex w-2 h-2">
+                    <span
+                        class="motion-safe:animate-ping absolute inline-flex h-full w-full rounded-full bg-leaf opacity-60"></span>
+                    <span class="relative inline-flex w-2 h-2 rounded-full bg-leaf"></span>
+                </span>
+                Open to research collaboration
+            </span>
+
+            <p class="eyebrow uppercase text-xs text-leafdark font-medium mb-4">Web Developer </p>
+            <h1 class="font-display text-5xl md:text-6xl leading-[1.05] mb-6">Khushnur Anjum Tashme</h1>
+            <p class="text-base md:text-md leading-relaxed text-justify max-w-lg mb-8">
+                My journey began with building software and web applications, where I developed a strong
+                foundation in programming, problem-solving, and creating practical solutions. Over time, my
+                curiosity led me toward data, machine learning, and research, where I now explore how intelligent
+                systems can solve real-world problems. From developing web applications to building deep learning
+                models for medical image segmentation and air-quality forecasting, I enjoy turning ideas into
+                meaningful, research-driven solutions.
+            </p>
+
+
+            <!-- Buttons -->
+            <div class="flex flex-wrap items-center gap-4 sm:gap-6 mb-10">
+
+                <!-- Resume dropdown -->
+                <div id="resumeWrap" class="relative">
+                    <button id="resumeBtn" type="button" aria-haspopup="true" aria-expanded="false"
+                        class="btn rounded-full bg-leafdark hover:bg-white border-2 border-leaf hover:border-black normal-case font-medium px-7 gap-2 text-black hover:text-leafdark">
+                        Resume
+                        <svg id="resumeChevron" class="w-3.5 h-3.5 transition-transform duration-200"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m6 9 6 6 6-6" />
+                        </svg>
+                    </button>
+
+                    <div id="resumeMenu" role="menu"
+                        class="hidden absolute left-0 top-full mt-2 w-52 z-30 rounded-2xl border border-line bg-white shadow-lg p-2">
+                        <a href="assets/cv.pdf" target="_blank" rel="noopener" role="menuitem"
+                            class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm hover:bg-leaf/10 transition-colors">
+                            <span
+                                class="w-8 h-8 rounded-full bg-leaf/15 text-leafdark flex items-center justify-center">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                            </span>
+                            View resume
+                        </a>
+                        <a href="assets/cv.pdf" download="Tashme_Resume.pdf" role="menuitem"
+                            class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm hover:bg-leaf/10 transition-colors">
+                            <span
+                                class="w-8 h-8 rounded-full bg-leaf/15 text-leafdark flex items-center justify-center">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 3v12M7 10l5 5 5-5M4 20h16" />
+                                </svg>
+                            </span>
+                            Download PDF
+                        </a>
+                    </div>
+                </div>
+
+                <a href="#contact"
+                    class="btn rounded-full bg-white hover:bg-leafdark border-leaf hover:border-black normal-case font-medium px-7 text-leafdark hover:text-black">
+                    Contact
+                </a>
+            </div>
+
+            <!-- Quick stats -->
+            <div class="flex flex-wrap gap-x-8 gap-y-4 pt-6 border-t border-line max-w-md">
+                <div>
+                    <p class="font-display text-2xl leading-none">2*</p>
+                    <p class="text-xs  mt-1">On Codechef</p>
+                </div>
+                <div>
+                    <p class="font-display text-2xl leading-none">6</p>
+                    <p class="text-xs  mt-1">Projects</p>
+                </div>
+                <div>
+                    <p class="font-display text-2xl leading-none">6</p>
+                    <p class="text-xs  mt-1">Achievements</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Photo -->
+        <div class="flex justify-center md:justify-end">
+            <div class="relative">
+                <div class="absolute -inset-6 rounded-[2.5rem] avatar-mark opacity-90 -z-0 rotate-2"></div>
+                <div
+                    class="relative w-64 h-80 md:w-72 md:h-96 rounded-[2rem] bg-ink/5 border border-line overflow-hidden flex items-center justify-center">
+                    <span class="font-display text-7xl text-ink/25">T</span>
+                    <img src="assets/profile.jpg" alt="Portrait of Tashme"
+                        class="absolute inset-0 w-full h-full object-cover" onerror="this.remove()">
+                </div>
+
+                <!-- Floating chip -->
+                <!-- <div
+                    class="absolute -bottom-4 left-4 md:-left-8 flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-line shadow-md text-xs">
+                    <span class="w-2 h-2 rounded-full bg-leaf"></span>
+                    Working on thesis &amp; journal paper
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT + SKILLS -->
+    <section id="about" class="max-w-6xl mx-auto px-6 md:px-10 py-14 md:py-20">
+
+        <!-- ABOUT + EDUCATION -->
+        <div class="grid md:grid-cols-2 gap-8 md:gap-12 mb-16">
+
+            <!-- Left column: About + Language Fluency -->
+            <div>
+                <p class="eyebrow uppercase text-xs text-leafdark font-medium mb-4">About</p>
+                <h2 class="font-display text-3xl md:text-4xl mb-6">About Me</h2>
+                <p class="text-justify leading-relaxed mb-8">
+                    I'm a graduate student researching deep learning, currently working toward my thesis defense
+                    alongside a journal submission. My work spans medical image segmentation and environmental
+                    forecasting, but the pattern is always the same: get a faithful baseline running first, understand
+                    exactly where it struggles, then design something new to fix it. I'm comfortable across the full
+                    pipeline preprocessing, model design, training, evaluation, and writing it all up.
+                </p>
+
+                <p class="eyebrow uppercase text-xs text-leafdark font-medium mb-4">Fluency</p>
+                <div class="border border-line rounded-2xl bg-white p-6 space-y-5">
+                    <div class="flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-full bg-leaf/15 text-leafdark flex items-center justify-center">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="9" />
+                                <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
+                            </svg>
+                        </span>
+                        <h3 class="font-display text-lg">Spoken Languages</h3>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm mb-1.5"><span>Bangla</span><span
+                                class="">100%</span></div>
+                        <div class="h-1.5 rounded-full bg-line overflow-hidden">
+                            <div class="h-full rounded-full bg-leaf" style="width:100%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm mb-1.5"><span>English</span><span
+                                class="">90%</span></div>
+                        <div class="h-1.5 rounded-full bg-line overflow-hidden">
+                            <div class="h-full rounded-full bg-leaf" style="width:90%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-sm mb-1.5"><span>Hindi</span><span
+                                class="">75%</span></div>
+                        <div class="h-1.5 rounded-full bg-line overflow-hidden">
+                            <div class="h-full rounded-full bg-leaf" style="width:75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right column: Education -->
+            <div>
+                <p class="eyebrow uppercase text-xs text-leafdark font-medium mb-4">Background</p>
+                <h2 class="font-display text-3xl md:text-4xl mb-6">Education</h2>
+                <div class="border border-2 border-leaf rounded-2xl bg-white p-6">
+                    <ol class="relative border-l border-line ml-2 space-y-7">
+                        <li class="ml-6 relative">
+                            <span
+                                class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-leaf ring-4 ring-white"></span>
+                            <div class="flex flex-wrap items-center gap-2 mb-1">
+                                <span class="badge border-none bg-leaf/20 text-ink text-[11px] font-medium">CGPA 3.897 /
+                                    4.00</span>
+                            </div>
+                            <h3 class="font-display text-lg leading-snug">BSc in Computer Science &amp; Engineering</h3>
+                            <p class="text-sm text-leafdark">International Islamic University Chittagong</p>
+                        </li>
+                        <li class="ml-6 relative">
+                            <span
+                                class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-leaf ring-4 ring-white"></span>
+                            <div class="flex flex-wrap items-center gap-2 mb-1">
+                                <span class="badge border-none bg-leaf/20 text-ink text-[11px] font-medium">GPA
+                                    5.00</span>
+                                <span class="text-xs ">2019</span>
+                            </div>
+                            <h3 class="font-display text-lg leading-snug">Higher Secondary Certificate (HSC)</h3>
+                            <p class="text-sm text-leafdark">Ispahani Public School &amp; College</p>
+                        </li>
+                        <li class="ml-6 relative">
+                            <span
+                                class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-leaf ring-4 ring-white"></span>
+                            <div class="flex flex-wrap items-center gap-2 mb-1">
+                                <span class="badge border-none bg-leaf/20 text-ink text-[11px] font-medium">GPA
+                                    5.00</span>
+                                <span class="text-xs ">2017</span>
+                            </div>
+                            <h3 class="font-display text-lg leading-snug">Secondary School Certificate (SSC)</h3>
+                            <p class="text-sm text-leafdark">Sabuj Shikshayatan High School</p>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- TECHNICAL SKILLS -->
+        <div id="skills">
+            <p class="eyebrow uppercase text-xs text-leafdark font-medium mb-4">Competencies</p>
+            <h2 class="font-display text-3xl md:text-4xl mb-10">Technical Skills</h2>
+
+            <div class="grid md:grid-cols-2 gap-6 md:gap-x-12">
+
+                <!-- Languages -->
+                <div class="border border-line rounded-2xl bg-white p-6 hover:border-leaf transition-colors">
+                    <div class="flex items-center gap-3 mb-5">
+                        <span class="w-8 h-8 rounded-full bg-leaf/15 text-leafdark flex items-center justify-center">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m8 7-5 5 5 5M16 7l5 5-5 5" />
+                            </svg>
+                        </span>
+                        <h3 class="font-display text-lg">Languages</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="text-xs px-3 py-1 rounded-full border border-line bg-paper text-ink/100">Python</span>
+                        <span class="text-xs px-3 py-1 rounded-full border border-line bg-paper text-ink/100">Java</span>
+                        <span
+                            class="text-xs px-3 py-1 rounded-full border border-line bg-paper text-ink/100">JavaScript</span>
+                        <span
+                            class="text-xs px-3 py-1 rounded-full border border-line bg-paper text-ink/100">LaTeX</span>
+                    </div>
+                </div>
+
+                <!-- Deep Learning & AI -->
+                <div class="border border-line rounded-2xl bg-white p-6 hover:border-leaf transition-colors">
+                    <div class="flex items-center gap-3 mb-5">
+                        <span class="w-8 h-8 rounded-full bg-leaf/15 text-leafdark flex items-center justify-center">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m12 3 9 5-9 5-9-5 9-5ZM3 13l9 5 9-5M3 17.5l9 5 9-5" />
+                            </svg>
+                        </span>
+                        <h3 class="font-display text-lg">Deep Learning &amp; AI</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="text-xs px-3 py-1 rounded-full border border-line bg-paper text-ink/100">PyTorch</span>
+                        <span class="text-xs px-3 py-1 rounded-full border border-line bg-paper text-ink/100">CNNs</span>
+                        <span
+                            class="text-xs px-3 py-1 rounded-full border border-line bg-paper text-ink/100">Transformers
+                            &amp; Attention</span>
+                        <span class="text-xs px-3 py-1 rounded-full border border-line bg-paper text-ink/100">Medical
+                            Image Segmentation</span>
+                        <span class="text-xs px-3 py-1 rounded-full border border-line bg-paper text-ink/100">Time-Series
+                            Forecasting</span>
+                        <span class="text-xs px-3 py-1 rounded-full border border-line bg-paper text-ink/100">Multimodal
+                            Learning</span>
+                        <span class="text-xs px-3 py-1 rounded-full border border-line bg-paper text-ink/100">Machine
+                            Learning</span>
+                    </div>
+                </div>
+
+                <!-- Web Development -->
+                <div class="border border-line rounded-2xl bg-white p-6 hover:border-leaf transition-colors">
+                    <div class="flex items-center gap-3 mb-5">
+                        <span class="w-8 h-8 rounded-full bg-leaf/15 text-leafdark flex items-center justify-center">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="12" rx="2" />
+                                <path d="M8 20h8M12 16v4" />
+                            </svg>
+                        </span>
+                        <h3 class="font-display text-lg">Web Development</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="text-xs px-3 py-1 rounded-full border border-line bg-paper text-ink/100">HTML5</span>
+                        <span class="text-xs px-3 py-1 rounded-full border border-line bg-paper text-ink/100">CSS3</span>
+                        <span class="text-xs px-3 py-1 rounded-full border border-line bg-paper text-ink/100">Tailwind
+                            CSS</span>
+                        <span
+                            class="text-xs px-3 py-1 rounded-full border border-line bg-paper text-ink/100">JavaScript</span>
+                        <span class="text-xs px-3 py-1 rounded-full border border-line bg-paper text-ink/100">Full-Stack
+                            Apps</span>
+                    </div>
+                </div>
+
+                <!-- Tools & Platforms -->
+                <div class="border border-line rounded-2xl bg-white p-6 hover:border-leaf transition-colors">
+                    <div class="flex items-center gap-3 mb-5">
+                        <span class="w-8 h-8 rounded-full bg-leaf/15 text-leafdark flex items-center justify-center">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="3" />
+                                <path
+                                    d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1" />
+                            </svg>
+                        </span>
+                        <h3 class="font-display text-lg">Tools &amp; Platforms</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs px-3 py-1 rounded-full border border-line bg-paper text-ink/100">Git</span>
+                        <span
+                            class="text-xs px-3 py-1 rounded-full border border-line bg-paper text-ink/100">GitHub</span>
+                        <span
+                            class="text-xs px-3 py-1 rounded-full border border-line bg-paper text-ink/100">Jupyter</span>
+                        <span
+                            class="text-xs px-3 py-1 rounded-full border border-line bg-paper text-ink/100">Kaggle</span>
+                        <span class="text-xs px-3 py-1 rounded-full border border-line bg-paper text-ink/100">Google
+                            Colab</span>
+                        <span
+                            class="text-xs px-3 py-1 rounded-full border border-line bg-paper text-ink/100">Linux</span>
+                    </div>
+                </div>
+
+                <!-- Competitive Programming (full width) -->
+                <div
+                    class="md:col-span-2 border border-line rounded-2xl bg-white p-6 hover:border-leaf transition-colors">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+                        <div class="flex items-center gap-3">
+                            <span
+                                class="w-8 h-8 rounded-full bg-leaf/15 text-leafdark flex items-center justify-center">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4ZM7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3" />
+                                </svg>
+                            </span>
+                            <h3 class="font-display text-lg">Competitive Programming</h3>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 sm:w-96">
+                            <div class="border border-line rounded-xl bg-paper px-5 py-3">
+                                <p class="text-xs  mb-1">CodeChef</p>
+                                <p class="font-display text-3xl leading-none">1056</p>
+                                <p class="text-[11px] eyebrow uppercase text-leafdark mt-2">Rating</p>
+                            </div>
+                            <div class="border border-line rounded-xl bg-paper px-5 py-3">
+                                <p class="text-xs  mb-1">Codeforces</p>
+                                <p class="font-display text-3xl leading-none">756</p>
+                                <p class="text-[11px] eyebrow uppercase text-leafdark mt-2">Rating</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- PROJECTS / SLIDER -->
+    <section id="work" class="max-w-6xl mx-auto px-6 md:px-10 py-16 md:py-24">
+        <div class="flex items-end justify-between mb-10">
+            <div>
+                <p class="eyebrow uppercase text-xs text-leafdark font-medium mb-4">Work Overview</p>
+                <h2 class="font-display text-3xl md:text-4xl">Projects</h2>
+            </div>
+            <div class="hidden md:flex gap-2">
+                <button id="prevBtn" aria-label="Previous project"
+                    class="btn btn-circle btn-sm bg-transparent border border-line hover:bg-leaf hover:border-leaf">‹</button>
+                <button id="nextBtn" aria-label="Next project"
+                    class="btn border btn-sm bg-transparent border border-line hover:bg-leaf hover:border-leaf">›</button>
+            </div>
+        </div>
+
+        <div id="carousel" class="carousel carousel-track w-full gap-6 overflow-x-auto pb-4 snap-x snap-mandatory">
+        </div>
+        <div id="dots" class="flex md:hidden justify-center gap-2 mt-2"></div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements" class="max-w-6xl mx-auto px-6 md:px-10 py-12 md:py-16">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-8">
+            <div>
+                <p class="eyebrow uppercase text-xs text-leafdark font-medium mb-4">Recognition</p>
+                <h2 class="font-display text-3xl md:text-4xl">Achievements</h2>
+            </div>
+            <div id="achFilters" class="flex flex-wrap gap-2" role="group" aria-label="Filter achievements">
+                <button class="ach-filter active px-4 py-1.5 rounded-full border border-line text-sm"
+                    data-filter="all">All</button>
+                <button class="ach-filter px-4 py-1.5 rounded-full border border-line text-sm"
+                    data-filter="competitions">Competitions</button>
+                <button class="ach-filter px-4 py-1.5 rounded-full border border-line text-sm"
+                    data-filter="hackathons">Hackathons</button>
+                <button class="ach-filter px-4 py-1.5 rounded-full border border-line text-sm"
+                    data-filter="volunteer">Volunteer</button>
+                <button class="ach-filter px-4 py-1.5 rounded-full border border-line text-sm"
+                    data-filter="language">Language</button>
+            </div>
+        </div>
+
+        <div id="achGrid" class="grid md:grid-cols-2 gap-4"></div>
+
+        <!-- DETAIL / CERTIFICATE POP-UP -->
+        <dialog id="achModal" class="modal">
+            <div class="modal-box bg-paper rounded-2xl max-w-2xl p-3">
+                <form method="dialog"><button
+                        class="btn btn-sm btn-circle absolute right-3 top-3 z-10 bg-white/90 border-line">✕</button>
+                </form>
+                <div id="achModalImgs" class="space-y-2"></div>
+                <div class="p-6">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span id="achModalResult"
+                            class="badge border-none bg-leaf/20 text-ink/100 text-xs font-medium"></span>
+                        <span id="achModalYear" class="eyebrow uppercase text-xs "></span>
+                    </div>
+                    <h3 id="achModalTitle" class="font-display text-2xl mb-1"></h3>
+                    <p id="achModalOrg" class="text-sm text-leafdark font-medium mb-3"></p>
+                    <p id="achModalDesc" class="text-sm  leading-relaxed"></p>
+                    <a id="achModalLink" href="#" target="_blank" rel="noopener"
+                        class="hidden mt-4 text-sm text-leafdark font-medium hover:underline"></a>
+                </div>
+            </div>
+            <form method="dialog" class="modal-backdrop"><button>close</button></form>
+        </dialog>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="max-w-6xl mx-auto px-6 md:px-10 py-14 md:py-20">
+        <p class="eyebrow uppercase text-xs text-leafdark font-medium mb-4">Contact</p>
+        <h2 class="font-display text-3xl md:text-4xl mb-4">Let's Talk</h2>
+        <p class=" leading-relaxed mb-10 max-w-md">Have a project, paper collaboration, or
+            research question in mind? Reach out directly or send a message.</p>
+
+        <div class="grid lg:grid-cols-5 gap-6 lg:gap-8">
+
+            <!-- Info card -->
+            <div class="lg:col-span-2 border border-line rounded-2xl bg-white overflow-hidden h-fit">
+                <div class="px-6 py-4 border-b border-line bg-ink/[.03]">
+                    <h3 class="font-display text-lg">Get in Touch</h3>
+                </div>
+                <ul class="divide-y divide-line text-sm">
+                    <li>
+                        <a href="mailto:khushnurtashme@gmail.com"
+                            class="flex items-center gap-3 px-6 py-4 hover:bg-leaf/5 transition-colors">
+                            <span
+                                class="w-8 h-8 rounded-full bg-leaf/15 text-leafdark flex items-center justify-center flex-none">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                                    <path d="m3 7 9 6 9-6" />
+                                </svg>
+                            </span>
+                            <div class="min-w-0">
+                                <p class=" text-xs">Email</p>
+                                <p class="truncate">khushnurtashme@gmail.com</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tel:+8801XXXXXXXXX"
+                            class="flex items-center gap-3 px-6 py-4 hover:bg-leaf/5 transition-colors">
+                            <span
+                                class="w-8 h-8 rounded-full bg-leaf/15 text-leafdark flex items-center justify-center flex-none">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z" />
+                                </svg>
+                            </span>
+                            <div>
+                                <p class=" text-xs">Phone</p>
+                                <p>+880 1XXX-XXXXXX</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="flex items-center gap-3 px-6 py-4">
+                        <span
+                            class="w-8 h-8 rounded-full bg-leaf/15 text-leafdark flex items-center justify-center flex-none">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                        </span>
+                        <div>
+                            <p class=" text-xs">Location</p>
+                            <p>Chattogram, Bangladesh</p>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="tel:+8801XXXXXXXXX"
+                            class="flex items-center gap-3 px-6 py-4 hover:bg-leaf/5 transition-colors">
+                            <span
+                                class="w-8 h-8 rounded-full bg-leaf/15 text-leafdark flex items-center justify-center flex-none">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path
+                                        d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z" />
+                                </svg>
+                            </span>
+                            <div>
+                                <p class=" text-xs">Whatsapp</p>
+                                <p>+880 1XXX-XXXXXX</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/KhushnurAnjum26" target="_blank" rel="noopener"
+                            class="flex items-center gap-3 px-6 py-4 hover:bg-leaf/5 transition-colors">
+                            <span
+                                class="w-8 h-8 rounded-full bg-leaf/15 text-leafdark flex items-center justify-center flex-none">
+                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="m8 7-5 5 5 5M16 7l5 5-5 5" />
+                                </svg>
+                            </span>
+                            <div>
+                                <p class=" text-xs">GitHub</p>
+                                <p>github.com/KhushnurAnjum26</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <div class="px-6 py-4 border-t border-line flex gap-3">
+                    <a href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank" rel="noopener"
+                        class="btn btn-sm flex-1 rounded-full bg-transparent border border-line hover:border-leaf hover:bg-leaf/10 normal-case">LinkedIn</a>
+                    <a href="https://github.com/KhushnurAnjum26" target="_blank" rel="noopener"
+                        class="btn btn-sm flex-1 rounded-full bg-transparent border border-line hover:border-leaf hover:bg-leaf/10 normal-case">GitHub</a>
+                </div>
+            </div>
+
+            <!-- Form card -->
+            <form id="contactForm" class="lg:col-span-3 border border-line rounded-2xl bg-white p-6 md:p-8 space-y-5"
+                novalidate>
+                <!-- Web3Forms settings -->
+                <input type="hidden" name="access_key" value="PASTE_YOUR_WEB3FORMS_ACCESS_KEY">
+                <input type="hidden" name="from_name" value="Portfolio Website">
+                <!-- Spam trap: real people never see or tick this -->
+                <input type="checkbox" name="botcheck" class="hidden" tabindex="-1" autocomplete="off">
+
+                <div class="grid sm:grid-cols-2 gap-5">
+                    <div>
+                        <label for="cfName" class="text-xs eyebrow uppercase  mb-1.5 block">Full name</label>
+                        <input id="cfName" name="name" type="text" placeholder="Your name" autocomplete="name"
+                            class="input w-full rounded-lg border-line bg-paper focus:outline-leaf" required>
+                    </div>
+                    <div>
+                        <label for="cfEmail" class="text-xs eyebrow uppercase  mb-1.5 block">Email</label>
+                        <input id="cfEmail" name="email" type="email" placeholder="you@example.com" autocomplete="email"
+                            class="input w-full rounded-lg border-line bg-paper focus:outline-leaf" required>
+                    </div>
+                </div>
+                <div>
+                    <label for="cfSubject" class="text-xs eyebrow uppercase  mb-1.5 block">Subject</label>
+                    <input id="cfSubject" name="subject" type="text" placeholder="What's this about?"
+                        class="input w-full rounded-lg border-line bg-paper focus:outline-leaf">
+                </div>
+                <div>
+                    <label for="cfMessage" class="text-xs eyebrow uppercase  mb-1.5 block">Message</label>
+                    <textarea id="cfMessage" name="message" placeholder="Write your message" rows="5"
+                        class="textarea w-full rounded-lg border-line bg-paper focus:outline-leaf" required></textarea>
+                </div>
+
+                <button id="cfBtn" type="submit"
+                    class="btn w-full rounded-full bg-leaf hover:bg-leafdark border-none text-ink normal-case font-medium gap-2">
+                    <span id="cfBtnText">Send message</span>
+                </button>
+
+                <p id="cfStatus" role="status" aria-live="polite" class="hidden text-sm rounded-xl px-4 py-3"></p>
+            </form>
+        </div>
+
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-line">
+        <div
+            class="max-w-6xl mx-auto px-6 md:px-10 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
+            <span class="font-display text-lg">T.</span>
+            <span class="">© 2026 Tashme. All rights reserved.</span>
+            <div class="hidden sm:flex gap-6 eyebrow uppercase text-xs text-ink/60">
+                <a href="#top" class="hover:text-leafdark">Home</a>
+                <a href="#work" class="hover:text-leafdark">Work</a>
+                <a href="#contact" class="hover:text-leafdark">Contact</a>
+            </div>
+            <button id="toTop" aria-label="Back to top"
+                class="btn btn-circle btn-sm bg-leaf hover:bg-leafdark border-none text-ink">↑</button>
+        </div>
+    </footer>
+
+    <!-- QUICK VIEW MODAL -->
+    <dialog id="quickviewModal" class="modal">
+        <div class="modal-box bg-paper rounded-2xl max-w-lg">
+            <form method="dialog"><button class="btn btn-sm btn-circle btn-ghost absolute right-3 top-3">✕</button>
+            </form>
+            <p id="qvEyebrow" class="eyebrow uppercase text-xs text-leafdark font-medium mb-2"></p>
+            <h3 id="qvTitle" class="font-display text-2xl mb-3"></h3>
+            <p id="qvBody" class="text-sm  leading-relaxed mb-4"></p>
+            <div id="qvTags" class="flex flex-wrap gap-2 mb-5"></div>
+            <div class="flex gap-3">
+                <a id="qvGithub" href="#"
+                    class="btn btn-sm flex-1 rounded-full bg-ink hover:bg-ink/85 border-none text-white normal-case">GitHub</a>
+                <a id="qvLive" href="#"
+                    class="btn btn-sm flex-1 rounded-full bg-leaf hover:bg-leafdark border-none text-ink normal-case">Live
+                    demo</a>
+            </div>
+        </div>
+        <form method="dialog" class="modal-backdrop"><button>close</button></form>
+    </dialog>
+
+
+    <script src="script.js"></script>
 </body>
 
 </html>

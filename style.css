@@ -1,0 +1,539 @@
+:root {
+    --c-ink: 20 24 27;
+    --c-paper: 251 251 247;
+    --c-muted: 107 114 128;
+    --c-line: 230 231 225;
+    --c-leaf: 95 207 74;
+    --c-leafdark: 63 168 46;
+    --c-surface: 255 255 255;
+}
+
+[data-theme="dark"] {
+    --c-ink: 236 238 232;
+    --c-paper: 14 19 17;
+    --c-muted: 154 163 156;
+    --c-line: 42 50 46;
+    --c-leaf: 95 207 74;
+    --c-leafdark: 79 190 59;
+    --c-surface: 22 28 25;
+}
+
+body {
+    background: rgb(var(--c-paper));
+    color: rgb(var(--c-ink));
+}
+
+/* Dark-mode fixes for classes that have fixed colours */
+[data-theme="dark"] .bg-white {
+    background-color: rgb(var(--c-surface));
+}
+
+[data-theme="dark"] .bg-white\/90 {
+    background-color: rgb(var(--c-surface) / .9);
+}
+
+[data-theme="dark"] .bg-gray-100 {
+    background-color: rgb(var(--c-line));
+}
+
+[data-theme="dark"] .ring-white {
+    --tw-ring-color: rgb(var(--c-surface));
+}
+
+[data-theme="dark"] .bg-ink.text-white {
+    color: rgb(var(--c-paper));
+}
+
+[data-theme="dark"] .bg-leaf.text-ink {
+    color: #14181B;
+}
+
+[data-theme="dark"] .ach-filter.active {
+    background: rgb(var(--c-ink));
+    color: rgb(var(--c-paper));
+    border-color: rgb(var(--c-ink));
+}
+
+[data-theme="dark"] .bg-red-50 {
+    background-color: rgba(239, 68, 68, .12);
+}
+
+[data-theme="dark"] .text-red-700 {
+    color: #fca5a5;
+}
+
+[data-theme="dark"] .placeholder-card {
+    border-color: rgb(var(--c-line));
+}
+
+::selection {
+    background: #5FCF4A;
+    color: #14181B;
+}
+
+.eyebrow {
+    letter-spacing: .12em;
+}
+
+.skill-bar-fill {
+    width: 0%;
+    transition: width 1.1s cubic-bezier(.22, 1, .36, 1);
+}
+
+.carousel-track {
+    scroll-behavior: smooth;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skill-bar-fill {
+        transition: none;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+:focus-visible {
+    outline: 2px solid #3FA82E;
+    outline-offset: 2px;
+}
+
+.avatar-mark {
+    background: radial-gradient(circle at 30% 20%, #8fe97e, #5FCF4A 55%, #3FA82E 100%);
+}
+
+#mobileMenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s ease;
+}
+
+#mobileMenu.open {
+    max-height: 320px;
+}
+
+.placeholder-card {
+    border: 1.5px dashed #C9CCC3;
+}
+
+
+
+
+
+
+
+
+
+/* navbar */
+
+#siteHeader.is-scrolled {
+    box-shadow: 0 8px 24px -16px rgba(0, 0, 0, .35);
+}
+
+/* Desktop links with animated underline */
+.nav-link {
+    position: relative;
+    padding: 4px 0;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    height: 2px;
+    border-radius: 2px;
+    background: rgb(var(--c-leaf));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .25s ease;
+}
+
+.nav-link:hover::after {
+    transform: scaleX(.45);
+}
+
+.nav-link.active {
+    color: rgb(var(--c-ink));
+}
+
+.nav-link.active::after {
+    transform: scaleX(1);
+}
+
+.mobile-link.active {
+    color: rgb(var(--c-leafdark));
+}
+
+/* Theme icons: moon in light mode, sun in dark mode */
+.theme-sun {
+    display: none;
+}
+
+[data-theme="dark"] .theme-sun {
+    display: block;
+}
+
+[data-theme="dark"] .theme-moon {
+    display: none;
+}
+
+/* Hamburger turns into an X */
+#menuBtn span {
+    transition: transform .25s ease, opacity .2s ease;
+}
+
+#menuBtn[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+#menuBtn[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+}
+
+#menuBtn[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Smooth colour fade while switching theme */
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+    transition: background-color .3s ease, color .3s ease, border-color .3s ease !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .nav-link::after,
+    #menuBtn span {
+        transition: none;
+    }
+
+    html.theme-switching *,
+    html.theme-switching *::before,
+    html.theme-switching *::after {
+        transition: none !important;
+    }
+}
+
+#siteHeader.is-scrolled {
+    box-shadow: 0 8px 24px -16px rgba(0, 0, 0, .35);
+}
+
+/* Desktop links with animated underline */
+.nav-link {
+    position: relative;
+    padding: 4px 0;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    height: 2px;
+    border-radius: 2px;
+    background: rgb(var(--c-leaf));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .25s ease;
+}
+
+.nav-link:hover::after {
+    transform: scaleX(.45);
+}
+
+.nav-link.active {
+    color: rgb(var(--c-ink));
+}
+
+.nav-link.active::after {
+    transform: scaleX(1);
+}
+
+.mobile-link.active {
+    color: rgb(var(--c-leafdark));
+}
+
+/* Theme icons: moon in light mode, sun in dark mode */
+.theme-sun {
+    display: none;
+}
+
+[data-theme="dark"] .theme-sun {
+    display: block;
+}
+
+[data-theme="dark"] .theme-moon {
+    display: none;
+}
+
+/* Hamburger turns into an X */
+#menuBtn span {
+    transition: transform .25s ease, opacity .2s ease;
+}
+
+#menuBtn[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+#menuBtn[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+}
+
+#menuBtn[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Smooth colour fade while switching theme */
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+    transition: background-color .3s ease, color .3s ease, border-color .3s ease !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .nav-link::after,
+    #menuBtn span {
+        transition: none;
+    }
+
+    html.theme-switching *,
+    html.theme-switching *::before,
+    html.theme-switching *::after {
+        transition: none !important;
+    }
+}
+
+
+
+
+/* achievements */
+
+
+.ach-filter {
+    transition: all .2s ease;
+}
+
+.ach-filter.active {
+    background: #14181B;
+    color: #fff;
+    border-color: #14181B;
+}
+
+.ach-filter:not(.active):hover {
+    border-color: #5FCF4A;
+    background: rgba(95, 207, 74, .1);
+}
+
+.ach-card {
+    animation: achFade .35s ease both;
+}
+
+@keyframes achFade {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ach-card {
+        animation: none;
+    }
+}
+
+
+.reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity .7s cubic-bezier(.22, 1, .36, 1),
+        transform .7s cubic-bezier(.22, 1, .36, 1);
+    will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Hero portrait: scale + fade entrance */
+.reveal-scale {
+    opacity: 0;
+    transform: scale(.94);
+    transition: opacity .8s cubic-bezier(.22, 1, .36, 1),
+        transform .8s cubic-bezier(.22, 1, .36, 1);
+    will-change: opacity, transform;
+}
+
+.reveal-scale.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Subtle continuous float on the hero avatar mark, once it has landed */
+.reveal-scale.is-visible .avatar-mark {
+    animation: avatarFloat 6s ease-in-out infinite;
+}
+
+@keyframes avatarFloat {
+
+    0%,
+    100% {
+        transform: rotate(2deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(1deg) translateY(-8px);
+    }
+}
+
+/* Project cards: gentle lift + image zoom on hover */
+#work .carousel-item {
+    transition: transform .35s cubic-bezier(.22, 1, .36, 1),
+        box-shadow .35s ease, border-color .35s ease;
+}
+
+#work .carousel-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px -24px rgba(0, 0, 0, .35);
+    border-color: rgb(var(--c-leaf));
+}
+
+#work .carousel-item img {
+    transition: transform .6s cubic-bezier(.22, 1, .36, 1);
+}
+
+#work .carousel-item:hover img {
+    transform: scale(1.06);
+}
+
+/* Achievement cards already fade in on filter; add a matching hover lift */
+.ach-card {
+    transition: transform .3s cubic-bezier(.22, 1, .36, 1),
+        box-shadow .3s ease, border-color .3s ease;
+}
+
+/* Technical-skill cards: quiet lift so the section doesn't feel static */
+#skills .border.border-line {
+    transition: transform .3s cubic-bezier(.22, 1, .36, 1),
+        border-color .3s ease, box-shadow .3s ease;
+}
+
+#skills .border.border-line:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px -22px rgba(0, 0, 0, .3);
+}
+
+/* Buttons: soft press feedback across the whole site */
+.btn {
+    transition: transform .18s ease, box-shadow .18s ease, background-color .2s ease, border-color .2s ease;
+}
+
+.btn:active {
+    transform: scale(.96);
+}
+
+/* Resume dropdown: fade + slide instead of an instant snap */
+#resumeMenu {
+    animation: menuIn .18s ease both;
+    transform-origin: top left;
+}
+
+@keyframes menuIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px) scale(.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Modal contents ease in when opened, rather than appearing abruptly */
+dialog.modal[open] .modal-box {
+    animation: modalIn .28s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Status badge dot already pings; give the whole pill a light breathing shadow */
+#top .rounded-full.border.border-line.bg-white:has(.animate-ping) {
+    animation: badgeGlow 2.8s ease-in-out infinite;
+}
+
+@keyframes badgeGlow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 rgba(95, 207, 74, 0);
+    }
+
+    50% {
+        box-shadow: 0 0 14px rgba(95, 207, 74, .28);
+    }
+}
+
+/* Respect reduced-motion preferences across all of the above */
+@media (prefers-reduced-motion: reduce) {
+
+    .reveal,
+    .reveal-scale {
+        transition: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    .reveal-scale.is-visible .avatar-mark,
+    #top .rounded-full.border.border-line.bg-white:has(.animate-ping) {
+        animation: none;
+    }
+
+    #work .carousel-item,
+    #work .carousel-item img,
+    .ach-card,
+    #skills .border.border-line,
+    .btn,
+    #resumeMenu,
+    dialog.modal[open] .modal-box {
+        transition: none;
+        animation: none;
+    }
+
+    #work .carousel-item:hover {
+        transform: none;
+    }
+
+    #work .carousel-item:hover img {
+        transform: none;
+    }
+
+    #skills .border.border-line:hover {
+        transform: none;
+    }
+}
