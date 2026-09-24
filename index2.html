@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tashme — Deep Learning Researcher</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.14/dist/full.min.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ink: '#14181B',
+                        paper: '#FBFBF7',
+                        muted: '#6B7280',
+                        line: '#E6E7E1',
+                        leaf: '#5FCF4A',
+                        leafdark: '#3FA82E',
+                    },
+                    fontFamily: {
+                        display: ['Fraunces', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        body {
+            background: #FBFBF7;
+            color: #14181B;
+        }
+
+        ::selection {
+            background: #5FCF4A;
+            color: #14181B;
+        }
+
+        .eyebrow {
+            letter-spacing: .12em;
+        }
+
+        .skill-bar-fill {
+            width: 0%;
+            transition: width 1.1s cubic-bezier(.22, 1, .36, 1);
+        }
+
+        .carousel-track {
+            scroll-behavior: smooth;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .skill-bar-fill {
+                transition: none;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        :focus-visible {
+            outline: 2px solid #3FA82E;
+            outline-offset: 2px;
+        }
+
+        .avatar-mark {
+            background: radial-gradient(circle at 30% 20%, #8fe97e, #5FCF4A 55%, #3FA82E 100%);
+        }
+
+        #mobileMenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .3s ease;
+        }
+
+        #mobileMenu.open {
+            max-height: 320px;
+        }
+
+        .placeholder-card {
+            border: 1.5px dashed #C9CCC3;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-ink antialiased">
+
+    <!-- NAV -->
+    <header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-line">
+        <nav class="max-w-6xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
+            <a href="#top" class="font-display text-xl tracking-tight">T.</a>
+            <ul class="hidden md:flex items-center gap-8 text-sm eyebrow uppercase text-ink/70">
+                <li><a href="#top" class="hover:text-leafdark transition-colors">Home</a></li>
+                <li><a href="#about" class="hover:text-leafdark transition-colors">About</a></li>
+                <li><a href="#work" class="hover:text-leafdark transition-colors">Projects</a></li>
+                <li><a href="#achievements" class="hover:text-leafdark transition-colors">Achievements</a></li>
+                <li><a href="#contact" class="hover:text-leafdark transition-colors">Contact</a></li>
+            </ul>
+            <a href="#contact"
+                class="hidden md:inline-flex btn btn-sm rounded-full bg-leaf hover:bg-leafdark border-none text-ink normal-case font-medium px-5">Say
+                hello</a>
+            <button id="menuBtn" aria-label="Toggle menu"
+                class="md:hidden w-9 h-9 flex flex-col items-center justify-center gap-1.5">
+                <span class="w-6 h-0.5 bg-ink"></span>
+                <span class="w-6 h-0.5 bg-ink"></span>
+                <span class="w-6 h-0.5 bg-ink"></span>
+            </button>
+        </nav>
+        <div id="mobileMenu" class="md:hidden border-t border-line bg-paper">
+            <ul class="flex flex-col gap-1 px-6 py-4 text-sm eyebrow uppercase text-ink/80">
+                <li><a href="#top" class="block py-2">Home</a></li>
+                <li><a href="#about" class="block py-2">About</a></li>
+                <li><a href="#work" class="block py-2">Projects</a></li>
+                <li><a href="#achievements" class="block py-2">Achievements</a></li>
+                <li><a href="#contact" class="block py-2">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- HERO -->
+   <section id="top"
+    class="max-w-6xl mx-auto px-6 md:px-10 pt-14 md:pt-20 pb-14 md:pb-20 grid md:grid-cols-2 gap-12 items-center">
+
+    <div>
+        <!-- Status badge -->
+        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-line bg-white text-xs text-ink/70 mb-6">
+            <span class="relative flex w-2 h-2">
+                <span class="motion-safe:animate-ping absolute inline-flex h-full w-full rounded-full bg-leaf opacity-60"></span>
+                <span class="relative inline-flex w-2 h-2 rounded-full bg-leaf"></span>
+            </span>
+            Open to research collaboration
+        </span>
+
+        <p class="eyebrow uppercase text-xs text-leafdark font-medium mb-4">— Deep Learning Researcher</p>
+        <h1 class="font-display text-5xl md:text-6xl leading-[1.05] mb-6">Tashme</h1>
+        <p class="text-muted text-base md:text-lg leading-relaxed max-w-md mb-8">
+            I build deep learning systems that hold up outside the notebook — from segmenting polyps in
+            colonoscopy frames to forecasting air quality across Bangladesh. My process: replicate a strong
+            published baseline, then push past it with an original architectural idea.
+        </p>
+
+        <!-- Buttons -->
+        <div class="flex flex-wrap items-center gap-4 sm:gap-6 mb-10">
+
+            <!-- Resume dropdown -->
+            <div id="resumeWrap" class="relative">
+                <button id="resumeBtn" type="button" aria-haspopup="true" aria-expanded="false"
+                    class="btn rounded-full bg-ink hover:bg-ink/85 border-none text-white normal-case font-medium px-7 gap-2">
+                    Resume
+                    <svg id="resumeChevron" class="w-3.5 h-3.5 transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+
+                <div id="resumeMenu" role="menu"
+                    class="hidden absolute left-0 top-full mt-2 w-52 z-30 rounded-2xl border border-line bg-white shadow-lg p-2">
+                    <a href="assets/cv.pdf" target="_blank" rel="noopener" role="menuitem"
+                        class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm hover:bg-leaf/10 transition-colors">
+                        <span class="w-8 h-8 rounded-full bg-leaf/15 text-leafdark flex items-center justify-center">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+                        </span>
+                        View resume
+                    </a>
+                    <a href="assets/cv.pdf" download="Tashme_Resume.pdf" role="menuitem"
+                        class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm hover:bg-leaf/10 transition-colors">
+                        <span class="w-8 h-8 rounded-full bg-leaf/15 text-leafdark flex items-center justify-center">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg>
+                        </span>
+                        Download PDF
+                    </a>
+                </div>
+            </div>
+
+            <a href="#contact"
+                class="btn rounded-full bg-transparent hover:bg-leaf/10 border border-line normal-case font-medium px-7 text-ink">Contact</a>
+        </div>
+
+        <!-- Quick stats -->
+        <div class="flex flex-wrap gap-x-8 gap-y-4 pt-6 border-t border-line max-w-md">
+            <div>
+                <p class="font-display text-2xl leading-none">3.897</p>
+                <p class="text-xs text-muted mt-1">CGPA / 4.00</p>
+            </div>
+            <div>
+                <p class="font-display text-2xl leading-none">6</p>
+                <p class="text-xs text-muted mt-1">Projects</p>
+            </div>
+            <div>
+                <p class="font-display text-2xl leading-none">6</p>
+                <p class="text-xs text-muted mt-1">Achievements</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Photo -->
+    <div class="flex justify-center md:justify-end">
+        <div class="relative">
+            <div class="absolute -inset-6 rounded-[2.5rem] avatar-mark opacity-90 -z-0 rotate-2"></div>
+            <div
+                class="relative w-64 h-80 md:w-72 md:h-96 rounded-[2rem] bg-ink/5 border border-line overflow-hidden flex items-center justify-center">
+                <span class="font-display text-7xl text-ink/25">T</span>
+                <img src="assets/profile.jpg" alt="Portrait of Tashme"
+                    class="absolute inset-0 w-full h-full object-cover" onerror="this.remove()">
+            </div>
+
+            <!-- Floating chip -->
+            <div class="absolute -bottom-4 left-4 md:-left-8 flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-line shadow-md text-xs">
+                <span class="w-2 h-2 rounded-full bg-leaf"></span>
+                Working on thesis &amp; journal paper
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            const wrap = document.getElementById('resumeWrap');
+            const btn = document.getElementById('resumeBtn');
+            const menu = document.getElementById('resumeMenu');
+            const chevron = document.getElementById('resumeChevron');
+
+            function setOpen(open) {
+                menu.classList.toggle('hidden', !open);
+                btn.setAttribute('aria-expanded', open);
+                chevron.classList.toggle('rotate-180', open);
+            }
+
+            btn.addEventListener('click', () => setOpen(menu.classList.contains('hidden')));
+            document.addEventListener('click', e => { if (!wrap.contains(e.target)) setOpen(false); });
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+            menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+        })();
+    </script>
+</section>
+
+   
+
+
+    
+
+    
+
+    <!-- FOOTER -->
+    <footer class="border-t border-line">
+        <div
+            class="max-w-6xl mx-auto px-6 md:px-10 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
+            <span class="font-display text-lg">T.</span>
+            <span class="text-muted">© 2026 Tashme. All rights reserved.</span>
+            <div class="hidden sm:flex gap-6 eyebrow uppercase text-xs text-ink/60">
+                <a href="#top" class="hover:text-leafdark">Home</a>
+                <a href="#work" class="hover:text-leafdark">Work</a>
+                <a href="#contact" class="hover:text-leafdark">Contact</a>
+            </div>
+            <button id="toTop" aria-label="Back to top"
+                class="btn btn-circle btn-sm bg-leaf hover:bg-leafdark border-none text-ink">↑</button>
+        </div>
+    </footer>
+
+    <!-- QUICK VIEW MODAL -->
+    <dialog id="quickviewModal" class="modal">
+        <div class="modal-box bg-paper rounded-2xl max-w-lg">
+            <form method="dialog"><button class="btn btn-sm btn-circle btn-ghost absolute right-3 top-3">✕</button>
+            </form>
+            <p id="qvEyebrow" class="eyebrow uppercase text-xs text-leafdark font-medium mb-2"></p>
+            <h3 id="qvTitle" class="font-display text-2xl mb-3"></h3>
+            <p id="qvBody" class="text-sm text-muted leading-relaxed mb-4"></p>
+            <div id="qvTags" class="flex flex-wrap gap-2 mb-5"></div>
+            <div class="flex gap-3">
+                <a id="qvGithub" href="#"
+                    class="btn btn-sm flex-1 rounded-full bg-ink hover:bg-ink/85 border-none text-white normal-case">GitHub</a>
+                <a id="qvLive" href="#"
+                    class="btn btn-sm flex-1 rounded-full bg-leaf hover:bg-leafdark border-none text-ink normal-case">Live
+                    demo</a>
+            </div>
+        </div>
+        <form method="dialog" class="modal-backdrop"><button>close</button></form>
+    </dialog>
+
+    <script>
+        // ---- Mobile menu ----
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+        mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+        // ---- Skill bar reveal ----
+        const bars = document.querySelectorAll('.skill-bar-fill');
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    bars.forEach(b => { b.style.width = b.dataset.pct + '%'; });
+                    document.querySelectorAll('.skill-pct').forEach((el, i) => { el.textContent = bars[i].dataset.pct + '%'; });
+                    io.disconnect();
+                }
+            });
+        }, { threshold: 0.3 });
+        const skillsSection = document.getElementById('skills');
+        if (skillsSection) io.observe(skillsSection);
+
+        // ---- Project data (edit github/live URLs once repos are linked) ----
+        const projectData = [
+            {
+                key: 'Shoppers Hub',
+                title: 'Shoppers Hub',
+                short: 'A full-stack e-commerce platform for browsing products, managing carts, wishlists, and completing purchases.',
+                eyebrow: 'Full-Stack · E-Commerce',
+                body: 'Shoppers Hub is an e-commerce web application that allows users to browse products, view product details, manage wishlists and shopping carts, and proceed through a checkout flow.',
+                tags: ['Full-Stack', 'E-Commerce', 'Web'],
+                github: 'https://github.com/KhushnurAnjum26/Ecommerce-website',
+                live: '#',
+                image: 'assets/ecom.png',
+                accent: 'from-leafdark to-leaf',
+                label: 'Shop'
+            },
+            {
+                key: 'Nova-Travels',
+                title: 'Nova-Travels',
+                short: 'A bus seat reservation application for selecting available seats and managing ticket bookings.',
+                eyebrow: 'Coursework · Booking System',
+                body: 'Seat Booking App is an extended bus ticket reservation project that focuses on seat selection, booking management, and additional reservation functionality.',
+                tags: ['Assignment', 'Booking', 'Web'],
+                github: 'https://github.com/KhushnurAnjum26/Bus_ticket_assgnment5',
+                live: '#',
+                image: 'assets/nova-travels.png',
+                accent: 'from-ink to-ink/80',
+                label: 'Bus'
+            },
+            {
+                key: 'E-Ticket Resolver',
+                title: 'E-Ticket Resolver',
+                short: 'A coursework project focused on implementing an electronic ticketing and reservation solution.',
+                eyebrow: 'Coursework · Software Development',
+                body: 'E-Ticket Resolver is an academic assignment developed to demonstrate software development concepts through an electronic ticketing system.',
+                tags: ['Assignment', 'Java', 'Software'],
+                github: 'https://github.com/KhushnurAnjum26/New-Assignment2',
+                live: '#',
+                image: 'assets/task-resolve-counter.png',
+                accent: 'from-ink to-ink/80',
+                label: 'T'
+            },
+
+            {
+                key: 'Kali based Bus Ticket reservation System',
+                title: 'Kali based Bus Ticket reservation System',
+                short: 'A database-driven bus ticket reservation system for routes, passengers, seat selection, and bookings.',
+                eyebrow: 'Full-Stack · Database',
+                body: 'This bus ticket reservation system provides functionality for searching bus routes, selecting seats, storing passenger information, and managing ticket reservations using a database-backed application.',
+                tags: ['Full-Stack', 'Database', 'Web'],
+                github: 'https://github.com/KhushnurAnjum26/Bus-Ticket-Reservation-System',
+                live: '#',
+                image: 'assets/linux-bus.png',
+                accent: 'from-leafdark to-leaf',
+                label: 'Bus'
+            },
+
+            {
+                key: 'Diabetes Detection Model Using ML',
+                title: 'Diabetes Detection Model Using ML',
+                short: 'A machine learning classification model for predicting diabetes from patient health indicators.',
+                eyebrow: 'Machine Learning · Classification',
+                body: 'This project applies machine learning to diabetes prediction using health-related patient features. Logistic Regression is used to classify whether a patient is likely to have diabetes.',
+                tags: ['Machine Learning', 'Classification', 'Python'],
+                github: 'https://github.com/KhushnurAnjum26/machine-Learning/blob/main/Diabetes_Prediction_using_Logistic_Regression.ipynb',
+                live: '#',
+                image: 'assets/diabetes.png',
+                accent: 'from-ink to-ink/80',
+                label: 'ML'
+            },
+
+
+
+            {
+                key: 'PrismNet For Medical Image Segmentation',
+                title: 'PRISM-Net for Medical Image Segmentation',
+                short: 'A deep learning model for accurate colon polyp segmentation from endoscopic images.',
+                eyebrow: 'Computer Vision · Deep Learning',
+                body: 'PRISM-Net is a medical image segmentation model designed for colon polyp segmentation. It combines a ResNet34 encoder, attention-gated skip connections, ASPP-based multi-scale feature extraction, and a depthwise-separable decoder.',
+                tags: ['Computer Vision', 'Deep Learning', 'Medical AI'],
+                github: 'https://github.com/KhushnurAnjum26/Image-Processing-Project',
+                live: '#',
+                image: 'assets/seg.jpg',
+                accent: 'from-leafdark to-leaf',
+                label: 'CV'
+            }
+        ];
+
+        // ---- Render project cards ----
+        const carousel = document.getElementById('carousel');
+        carousel.innerHTML = projectData.map((p, i) => `
+    <article class="carousel-item snap-start w-[85%] sm:w-[60%] lg:w-[32%] flex-none border border-line rounded-2xl overflow-hidden bg-white flex flex-col">
+      <div class="w-full aspect-video overflow-hidden bg-gray-100">
+        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover" loading="lazy">
+      </div>
+      <div class="p-6 flex flex-col flex-1">
+        <h3 class="font-display text-xl mb-2">${p.title}</h3>
+        <p class="text-sm text-muted leading-relaxed mb-4 flex-1">${p.short}</p>
+        <div class="flex flex-wrap gap-2 mb-5">
+          ${p.tags.map(t => `<span class="badge badge-outline border-line text-ink/70">${t}</span>`).join('')}
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <a href="${p.github}" class="btn btn-xs rounded-full bg-ink hover:bg-ink/85 border-none text-white normal-case">GitHub</a>
+          <a href="${p.live}" class="btn btn-xs rounded-full bg-leaf hover:bg-leafdark border-none text-ink normal-case">Live link</a>
+          <button class="quickview-btn btn btn-xs rounded-full bg-transparent border border-line normal-case" data-project="${i}">Quick view</button>
+        </div>
+      </div>
+    </article>
+  `).join('');
+
+        // ---- Carousel controls ----
+        const track = document.getElementById('carousel');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const dotsWrap = document.getElementById('dots');
+        const items = track.querySelectorAll('.carousel-item');
+
+        items.forEach((item, i) => {
+            const dot = document.createElement('button');
+            dot.className = 'w-2 h-2 rounded-full bg-line';
+            dot.setAttribute('aria-label', 'Go to project ' + (i + 1));
+            dot.addEventListener('click', () => item.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }));
+            dotsWrap.appendChild(dot);
+        });
+        const dots = dotsWrap.querySelectorAll('button');
+
+        function updateDots() {
+            const trackRect = track.getBoundingClientRect();
+            let closest = 0, closestDist = Infinity;
+            items.forEach((item, i) => {
+                const dist = Math.abs(item.getBoundingClientRect().left - trackRect.left);
+                if (dist < closestDist) { closestDist = dist; closest = i; }
+            });
+            dots.forEach((d, i) => d.classList.toggle('bg-leaf', i === closest));
+        }
+        track.addEventListener('scroll', () => window.requestAnimationFrame(updateDots));
+        updateDots();
+
+        function scrollByCard(dir) {
+            const cardWidth = items[0].getBoundingClientRect().width + 24;
+            track.scrollBy({ left: dir * cardWidth, behavior: 'smooth' });
+        }
+        prevBtn.addEventListener('click', () => scrollByCard(-1));
+        nextBtn.addEventListener('click', () => scrollByCard(1));
+
+        // ---- Quick view modal ----
+        const modal = document.getElementById('quickviewModal');
+        document.querySelectorAll('.quickview-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const p = projectData[btn.dataset.project];
+                document.getElementById('qvEyebrow').textContent = '— ' + p.eyebrow;
+                document.getElementById('qvTitle').textContent = p.title;
+                document.getElementById('qvBody').textContent = p.body;
+                document.getElementById('qvGithub').href = p.github;
+                document.getElementById('qvLive').href = p.live;
+                const tagsWrap = document.getElementById('qvTags');
+                tagsWrap.innerHTML = '';
+                p.tags.forEach(t => {
+                    const span = document.createElement('span');
+                    span.className = 'badge badge-outline border-line text-ink/70';
+                    span.textContent = t;
+                    tagsWrap.appendChild(span);
+                });
+                modal.showModal();
+            });
+        });
+
+        // ---- Back to top ----
+        document.getElementById('toTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    </script>
+
+</body>
+
+</html>

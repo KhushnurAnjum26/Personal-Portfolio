@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+    <title>Portfolio of Khushnur Anjum Tashme</title>
+
+
+
+    <!-- Tailwind CSS -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+
+    <!-- DaisyUI -->
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+
+
+
+    <!-- Font -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+
+
+    <style>
+        html {
+
+            scroll-behavior: smooth;
+
+        }
+
+
+
+        body {
+
+            font-family: "Inter", sans-serif;
+
+        }
+
+
+
+        .gradient-text {
+
+            background: linear-gradient(90deg, #c4b5d9, #a78bce);
+
+
+        }
+
+
+
+        .hero-glow {
+
+            box-shadow: 0 0 100px rgba(241, 99, 210, 0.18);
+
+        }
+
+
+
+        .project-card {
+
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        }
+
+
+
+        .project-card:hover {
+
+            transform: translateY(-7px);
+
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+
+        }
+
+
+
+        .skill {
+
+            transition: transform 0.2s ease;
+
+        }
+
+
+
+        .skill:hover {
+
+            transform: translateY(-3px);
+
+        }
+
+
+
+        :root {
+
+            --accent: #a78bce;
+
+            --accent-dark: #8b6fa8;
+
+        }
+
+
+
+        .gradient-text {
+
+            background: linear-gradient(90deg, #a469f6, #9853f8);
+
+            -webkit-background-clip: text;
+
+            background-clip: text;
+
+            color: transparent;
+
+        }
+
+
+
+        .hero-glow {
+
+            box-shadow: 0 0 100px rgba(250, 166, 243, 0.14);
+
+        }
+
+
+
+        .section-shell {
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+
+        .section-shell::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 360px;
+
+            height: 360px;
+
+            border-radius: 9999px;
+
+            background: rgba(250, 166, 243, 0.14);
+
+            filter: blur(10px);
+
+            top: -180px;
+
+            right: -120px;
+
+            pointer-events: none;
+
+        }
+
+
+
+        .orange-btn {
+
+            background: #f3eef9 !important;
+
+            border: 2px solid;
+
+            border-color: #8b6fa8 !important;
+
+            color: #080808 !important;
+
+            box-shadow: 0 5px 16px rgba(246, 69, 213, 0.14);
+
+            transition: all .2s ease;
+
+        }
+
+
+
+        .orange-btn:hover {
+
+            background: #a78bce !important;
+
+            border: 2px solid;
+
+            color: white;
+
+            border-color: #ddd2e9 !important;
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 8px 20px rgba(248, 149, 227, 0.15);
+
+        }
+
+
+
+        .section-label {
+
+            letter-spacing: .16em;
+
+            font-size: .78rem;
+
+        }
+
+
+
+        .soft-card {
+
+            border: 1px solid rgba(248, 138, 215, 0.08);
+
+            transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+
+        }
+
+
+
+        .soft-card:hover {
+
+            transform: translateY(-5px);
+
+            border-color: rgba(217, 119, 6, .20);
+
+            box-shadow: 0 18px 45px rgba(15, 23, 42, .10);
+
+        }
+
+
+
+        .hero-title,
+        .section-heading {
+
+            text-wrap: balance;
+
+        }
+
+
+
+        .text-primary {
+            color: #765b8f !important;
+        }
+
+        .bg-primary {
+            background-color: #c4b5d9 !important;
+        }
+
+        .border-primary {
+            border-color: #a78bce !important;
+        }
+
+        .ring-primary {
+            --tw-ring-color: #a78bce !important;
+        }
+
+        .bg-primary\/20 {
+            background-color: rgba(203, 8, 161, 0.18) !important;
+        }
+
+        .badge-primary {
+
+            background-color: #8b6fa8 !important;
+
+            border-color: #765b8f !important;
+
+            color: #fff !important;
+
+        }
+    </style>
+
+
+    <style>
+        @media (max-width: 767px) {
+            .mobile-nav-wrap {
+                position: relative;
+                z-index: 9999;
+            }
+
+            .mobile-nav-wrap>summary {
+                list-style: none;
+            }
+
+            .mobile-nav-wrap>summary::-webkit-details-marker {
+                display: none;
+            }
+
+            .mobile-menu-button {
+                width: 2.75rem;
+                height: 2.75rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                border-radius: 9999px;
+                color: #33263f;
+                background: transparent;
+            }
+
+            .mobile-menu-button:hover {
+                background: #f5effa;
+            }
+
+            .mobile-nav-menu {
+                position: absolute !important;
+                top: calc(100% + 0.75rem) !important;
+                right: 0 !important;
+                left: auto !important;
+                width: 210px !important;
+                min-width: 210px !important;
+                margin: 0 !important;
+                padding: 0.5rem !important;
+                display: block !important;
+                background: #ffffff !important;
+                color: #33263f !important;
+                border: 1px solid #e6dcef !important;
+                border-radius: 0.9rem !important;
+                box-shadow: 0 14px 35px rgba(70, 45, 90, 0.18);
+                z-index: 10000 !important;
+            }
+
+            .mobile-nav-menu li {
+                list-style: none;
+                margin: 0;
+            }
+
+            .mobile-nav-menu li a {
+                display: block;
+                width: 100%;
+                color: #33263f !important;
+                background: transparent !important;
+                font-weight: 600;
+                padding: 0.75rem 1rem !important;
+                border-radius: 0.65rem;
+                text-decoration: none;
+            }
+
+            .mobile-nav-menu li a:hover,
+            .mobile-nav-menu li a:focus {
+                color: #765b8f !important;
+                background: #f5effa !important;
+            }
+        }
+    </style>
+
+</head>
+
+
+
+<body class="bg-base-300 text-base-content">
+
+    <!-- NAVBAR -->
+    <header class="navbar bg-base-100/90 backdrop-blur-md sticky top-0 z-50 border-b border-purple-100">
+        <div class="container mx-auto px-5">
+
+            <div class="hidden md:flex ml-auto">
+                <ul class="menu menu-horizontal gap-1 font-medium items-center">
+                    <li>
+                        <a href="#home" aria-label="Home" title="Home" class="nav-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 10.5 12 3l9 7.5M5 9v11h14V9M9 20v-6h6v6" />
+                            </svg>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#achievements" class="nav-link">Achievements</a></li>
+                    <li><a href="#contribution" class="nav-link">Contribution</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </div>
+
+            <details class="mobile-nav-wrap md:hidden">
+                <summary class="mobile-menu-button" aria-label="Open navigation menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </summary>
+                <ul class="mobile-nav-menu">
+                    <li><a href="#home" class="nav-link">⌂&nbsp;&nbsp; Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#achievements" class="nav-link">Achievements</a></li>
+                    <li><a href="#contribution" class="nav-link">Contribution</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </details>
+        </div>
+    </header>
+
+                                            <!-- HERO Section-->
+    <section id="home" data-section="home" class="min-h-[90vh] flex items-center section-shell bg-base-100">
+        <div class="container mx-auto px-5 py-16">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+                <div>
+                    <span class="text-purple-500 font-semibold section-label">HELLO, I'M</span>
+
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight hero-title mt-3">
+                        Khushnur Anjum
+                        <span class="gradient-text block">Tashme</span>
+                    </h1>
+
+                    <h2 class="text-2xl md:text-3xl font-semibold mt-5">
+                        Data & AI Enthusiast
+                    </h2>
+
+                    <p class="text-base-content/70 text-lg leading-relaxed mt-6 max-w-xl">
+                        I am a Computer Science and Engineering student passionate about
+                        data analytics, machine learning, computer vision, software
+                        development, and research-driven problem solving.
+                    </p>
+
+                    <div class="flex flex-wrap gap-3 mt-8">
+                        <a href="#projects" class="btn orange-btn">View Projects</a>
+                        <a href="#contact" class="btn orange-btn">Contact Me</a>
+                        <a href="https://github.com/KhushnurAnjum26" target="_blank" class="btn orange-btn">GitHub ↗</a>
+                    </div>
+
+                    <div class="flex flex-wrap gap-3 mt-7">
+                        <span class="badge badge-lg bg-purple-50 text-purple-700 border-purple-200 p-4">Machine
+                            Learning</span>
+                        <span class="badge badge-lg bg-purple-50 text-purple-700 border-purple-200 p-4">Computer
+                            Vision</span>
+                        <span class="badge badge-lg bg-purple-50 text-purple-700 border-purple-200 p-4">Data
+                            Analytics</span>
+                    </div>
+                </div>
+
+                <div class="flex justify-center lg:justify-end">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-primary/20 blur-3xl rounded-full"></div>
+                        <div class="relative avatar">
+                            <div class="w-72 md:w-80 lg:w-96 rounded-full
+                                    ring ring-primary ring-offset-base-100
+                                    ring-offset-8 hero-glow">
+                                <img src="assets/profile.jpg" alt="Khushnur Anjum Tashme">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" data-section="about" class="py-24 bg-purple-50/30 section-shell">
+        <div class="container mx-auto px-5">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="text-primary font-semibold section-label">ABOUT ME</span>
+                    <h2 class="text-4xl font-bold mt-2">
+                        Curious About <span class="gradient-text">Technology & Data</span>
+                    </h2>
+                </div>
+
+                <div class="card bg-base-100 shadow-lg soft-card">
+                    <div class="card-body p-8 md:p-10">
+                        <p class="text-base-content/70 leading-relaxed text-lg">
+                            I am a Computer Science and Engineering undergraduate interested
+                            in using technology to solve practical problems. I enjoy working
+                            with data, developing predictive models, experimenting with deep
+                            learning architectures, and turning technical ideas into usable
+                            applications.
+                        </p>
+
+                        <h3 class="text-2xl font-bold mt-8 mb-4">My Interests</h3>
+
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div class="p-5 rounded-2xl bg-purple-50 border border-purple-100">
+                                <h4 class="font-bold">Data Analytics</h4>
+                                <p class="text-sm text-base-content/65 mt-2">
+                                    Data preprocessing, EDA, visualization and extracting
+                                    meaningful insights from datasets.
+                                </p>
+                            </div>
+                            <div class="p-5 rounded-2xl bg-purple-50 border border-purple-100">
+                                <h4 class="font-bold">Machine Learning</h4>
+                                <p class="text-sm text-base-content/65 mt-2">
+                                    Predictive modeling, experimentation, model evaluation
+                                    and practical ML workflows.
+                                </p>
+                            </div>
+                            <div class="p-5 rounded-2xl bg-purple-50 border border-purple-100">
+                                <h4 class="font-bold">Computer Vision</h4>
+                                <p class="text-sm text-base-content/65 mt-2">
+                                    Image understanding, segmentation and deep-learning
+                                    approaches for visual data.
+                                </p>
+                            </div>
+                            <div class="p-5 rounded-2xl bg-purple-50 border border-purple-100">
+                                <h4 class="font-bold">Software Development</h4>
+                                <p class="text-sm text-base-content/65 mt-2">
+                                    Backend development, web applications, databases and
+                                    building practical software solutions.
+                                </p>
+                            </div>
+                            <div class="p-5 rounded-2xl bg-purple-50 border border-purple-100 sm:col-span-2">
+                                <h4 class="font-bold">Research</h4>
+                                <p class="text-sm text-base-content/65 mt-2">
+                                    Exploring research problems in computer vision,
+                                    time-series forecasting and applied AI.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+                                     <!-- PROJECTS -->
+    <section id="projects" data-section="projects" class="py-24 bg-base-100 section-shell">
+        <div class="container mx-auto px-5">
+            <div class="text-center mb-14">
+                <span class="text-primary font-semibold section-label">MY WORK</span>
+                <h2 class="text-4xl font-bold mt-2">Featured Projects</h2>
+                <p class="text-base-content/60 mt-4 max-w-2xl mx-auto">
+                    A selection of academic and personal projects across machine learning,
+                    computer vision, data analytics and software development.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <div class="card bg-base-100 shadow-lg project-card soft-card border border-purple-100">
+                    <figure class="h-44 bg-purple-50 flex items-center justify-center">
+                        <div class="text-6xl"></div>
+                    </figure>
+                    <div class="card-body">
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="badge badge-primary">Deep Learning</span>
+                            <span class="badge">Time Series</span>
+                        </div>
+                        <h3 class="card-title mt-2">STAR</h3>
+                        <p class="text-base-content/70">
+                            A station-aware temporal residual attention network for
+                            multi-station PM2.5 forecasting.
+                        </p>
+                        <div class="card-actions justify-end mt-4">
+                            <a href="https://github.com/" target="_blank" class="btn btn-sm orange-btn">GitHub ↗</a>
+                            <a href="#" class="btn btn-sm orange-btn live-link">Live Link ↗</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bg-base-100 shadow-lg project-card soft-card border border-purple-100">
+                    <figure class="h-44 bg-purple-50 flex items-center justify-center">
+                        <div class="text-6xl"></div>
+                    </figure>
+                    <div class="card-body">
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="badge badge-primary">Computer Vision</span>
+                            <span class="badge">Deep Learning</span>
+                        </div>
+                        <h3 class="card-title mt-2">PRISM-Net</h3>
+                        <p class="text-base-content/70">
+                            A multi-scale U-Net based architecture designed for
+                            colon polyp segmentation.
+                        </p>
+                        <div class="card-actions justify-end mt-4">
+                            <a href="https://github.com/" target="_blank" class="btn btn-sm orange-btn">GitHub ↗</a>
+                            <a href="#" class="btn btn-sm orange-btn live-link">Live Link ↗</a>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+
+                <div class="card bg-base-100 shadow-lg project-card soft-card border border-purple-100">
+                    <figure class="h-44 bg-purple-50 flex items-center justify-center">
+                        <div class="text-6xl"></div>
+                    </figure>
+
+                    <div class="card-body">
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="badge badge-primary">javascript</span>
+                            <span class="badge">Web Development</span>
+                            <span class="badge">Database</span>
+                        </div>
+
+                        <h3 class="card-title mt-2">Bus Ticket Management System</h3>
+
+                        <p class="text-base-content/70">
+                            A web-based bus ticket management system developed with javascript,
+                            featuring  functionality for managing bus seats, coupons, schedules, tickets and booking-related information.
+                        </p>
+
+                        <div class="card-actions justify-end mt-4">
+                            <a href="https://github.com/KhushnurAnjum26/Bus_ticket_assgnment5" target="_blank" class="btn btn-sm orange-btn">
+                                GitHub ↗
+                            </a>
+                            <a href="https://khushnuranjum26.github.io/Bus_ticket_assgnment5/" class="btn btn-sm orange-btn">
+                                Live Link ↗
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card bg-base-100 shadow-lg project-card soft-card border border-purple-100">
+                    <figure class="h-44 bg-purple-50 flex items-center justify-center">
+                        <div class="text-6xl"></div>
+                    </figure>
+
+                    <div class="card-body">
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="badge badge-primary">Operating Systems</span>
+                            <span class="badge">C / Linux</span>
+                            <span class="badge">System Programming</span>
+                        </div>
+
+                        <h3 class="card-title mt-2">Bus Ticket Booking System</h3>
+
+                        <p class="text-base-content/70">
+                            An Operating Systems course project developed in a Kali Linux
+                            environment, implementing a bus ticket booking workflow while
+                            applying core operating system and system-level programming concepts.
+                        </p>
+
+                        <div class="card-actions justify-end mt-4">
+                            <a href="https://github.com/KhushnurAnjum26/Bus-Ticket-Reservation-System" target="_blank" class="btn btn-sm orange-btn">
+                                GitHub ↗
+                            </a>
+                            <!-- <a href="#" class="btn btn-sm orange-btn">
+                                Details ↗
+                            </a> -->
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="card bg-base-100 shadow-lg project-card soft-card border border-purple-100">
+                    <figure class="h-44 bg-purple-50 flex items-center justify-center">
+                        <div class="text-6xl"></div>
+                    </figure>
+                    <div class="card-body">
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="badge badge-primary">Machine Learning</span>
+                            <span class="badge">Python</span>
+                        </div>
+                        <h3 class="card-title mt-2">Machine Learning Project</h3>
+                        <p class="text-base-content/70">
+                            An end-to-end workflow covering preprocessing, EDA,
+                            model training, evaluation and visualization.
+                        </p>
+                        <div class="card-actions justify-end mt-4">
+                            <a href="https://github.com/KhushnurAnjum26/Diabetes-Detection-Project-Using-ML-and-Frontend" target="_blank" class="btn btn-sm orange-btn">GitHub ↗</a>
+                            <a href="#" class="btn btn-sm orange-btn live-link">Live Link ↗</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+                                                <!-- ACHIEVEMENTS -->
+    <section id="achievements" data-section="achievements" class="py-24 bg-purple-50/30 section-shell">
+        <div class="container mx-auto px-5">
+            <div class="text-center mb-14">
+                <span class="text-primary font-semibold section-label">HIGHLIGHTS</span>
+                <h2 class="text-4xl font-bold mt-2">Achievements</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
+                <div class="card bg-base-100 shadow-lg soft-card">
+                    <div class="card-body">
+                        <div class="text-4xl mb-2"></div>
+                        <h3 class="font-bold text-xl">English Olympiad</h3>
+                        <p class="text-base-content/70 mt-2">
+                            Achieved <strong>3rd Place</strong> in the Regional Round
+                            of the English Olympiad.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card bg-base-100 shadow-lg soft-card">
+                    <div class="card-body">
+                        <div class="text-4xl mb-2"></div>
+                        <h3 class="font-bold text-xl">Prothom Alo Vashabid</h3>
+                        <p class="text-base-content/70 mt-2">
+                            Achieved <strong>3rd Place</strong> in Prothom Alo Vashabid.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card bg-base-100 shadow-lg soft-card">
+                    <div class="card-body">
+                        <div class="text-4xl mb-2"></div>
+                        <h3 class="font-bold text-xl">Academic Excellence</h3>
+                        <p class="text-base-content/70 mt-2">
+                            Strong academic performance alongside research,
+                            technical projects and teaching responsibilities.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+                                            <!-- CONTRIBUTION -->
+    <section id="contribution" data-section="contribution" class="py-24 bg-base-100 section-shell">
+        <div class="container mx-auto px-5">
+            <div class="text-center mb-14">
+                <span class="text-primary font-semibold section-label">CONTRIBUTION</span>
+                <h2 class="text-4xl font-bold mt-2">
+                    Teaching & <span class="gradient-text">Academic Contribution</span>
+                </h2>
+                <p class="text-base-content/60 mt-4 max-w-2xl mx-auto">
+                    Supporting students and contributing to academic learning through
+                    teaching-assistant responsibilities.
+                </p>
+            </div>
+
+            <div class="max-w-5xl mx-auto">
+                <div class="card bg-base-100 shadow-xl soft-card border border-purple-100">
+                    <div class="card-body p-8 md:p-10">
+                        <div class="flex items-start gap-5">
+                            <div class="text-4xl"></div>
+                            <div>
+                                <h3 class="text-2xl font-bold">Teaching Assistant</h3>
+                                <p class="text-base-content/60 mt-1">
+                                    Supporting learning across three core Computer Science courses
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-5 mt-8">
+                            <div class="p-5 rounded-2xl bg-purple-50 border border-purple-100">
+                                <h4 class="font-bold">Pattern Recognition & Image Processing</h4>
+                                <p class="text-sm text-base-content/65 mt-2">
+                                    Supporting course learning, concepts and practical work.
+                                </p>
+                            </div>
+
+                            <div class="p-5 rounded-2xl bg-purple-50 border border-purple-100">
+                                <h4 class="font-bold">Machine Learning & Data Mining</h4>
+                                <p class="text-sm text-base-content/65 mt-2">
+                                    Supporting students with machine learning and data-mining concepts.
+                                </p>
+                            </div>
+
+                            <div class="p-5 rounded-2xl bg-purple-50 border border-purple-100">
+                                <h4 class="font-bold">Database Management System</h4>
+                                <p class="text-sm text-base-content/65 mt-2">
+                                    Supporting database concepts, coursework and practical learning.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+                                            <!-- CONTACT -->
+    <section id="contact" data-section="contact" class="py-24 bg-purple-50/30 section-shell">
+        <div class="container mx-auto px-5">
+            <div class="max-w-4xl mx-auto text-center">
+                <span class="text-primary font-semibold section-label">GET IN TOUCH</span>
+                <h2 class="text-4xl md:text-5xl font-bold mt-2">Let's Work Together</h2>
+                <p class="text-base-content/70 text-lg mt-5">
+                    I'm interested in learning, collaborating, working on interesting
+                    projects, and exploring opportunities in technology and data.
+                </p>
+
+                <div class="flex flex-wrap justify-center gap-4 mt-8">
+                    <a href="#" id="emailButton" class="btn orange-btn">✉ Email Me</a>
+                    <a href="https://github.com/KhushnurAnjum26" target="_blank" class="btn orange-btn">GitHub ↗</a>
+                    <a href="https://www.linkedin.com/in/khushnur-anjum-tashme-3609a6335/" target="_blank"
+                        class="btn orange-btn">LinkedIn ↗</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- JAVASCRIPT FUNCTIONALITY -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const navLinks = [...document.querySelectorAll(".nav-link")];
+            const sections = [...document.querySelectorAll("[data-section]")];
+            const mobileMenu = document.querySelector(".mobile-nav-wrap");
+            const backToTop = document.getElementById("backToTop");
+            const contactEmail = "khushnurtashme@gmail.com";
+
+            // Smooth navigation + close mobile menu after selecting an item.
+            navLinks.forEach(link => {
+                link.addEventListener("click", () => {
+                    if (mobileMenu) mobileMenu.removeAttribute("open");
+                });
+            });
+
+            // Highlight the navigation item for the section currently on screen.
+            const observer = new IntersectionObserver((entries) => {
+                const visible = entries
+                    .filter(entry => entry.isIntersecting)
+                    .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+                if (!visible) return;
+
+                const currentId = visible.target.dataset.section;
+                navLinks.forEach(link => {
+                    link.classList.toggle(
+                        "active",
+                        link.getAttribute("href") === `#${currentId}`
+                    );
+                });
+            }, {
+                rootMargin: "-25% 0px -60% 0px",
+                threshold: [0.05, 0.2, 0.5]
+            });
+
+            sections.forEach(section => observer.observe(section));
+
+            // Back-to-top button.
+            window.addEventListener("scroll", () => {
+                backToTop.classList.toggle("show", window.scrollY > 500);
+            }, { passive: true });
+
+            backToTop.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+
+            // Prevent empty "#" links from jumping to the top.
+            document.querySelectorAll(".live-link").forEach(link => {
+                if (link.getAttribute("href") === "#") {
+                    link.addEventListener("click", (event) => {
+                        event.preventDefault();
+                        showToast("Live link will be added soon.");
+                    });
+                }
+            });
+
+            // Email button: open Gmail compose with your email as the receiver.
+            const emailButton = document.getElementById("emailButton");
+            if (emailButton) {
+                emailButton.addEventListener("click", (event) => {
+                    event.preventDefault();
+
+                    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(contactEmail)}`;
+                    window.open(gmailUrl, "_blank", "noopener,noreferrer");
+                });
+            }
+
+            // Small reusable notification.
+            function showToast(message) {
+                const toast = document.getElementById("toastMessage");
+                toast.textContent = message;
+                toast.classList.add("show");
+
+                clearTimeout(window.toastTimer);
+                window.toastTimer = setTimeout(() => {
+                    toast.classList.remove("show");
+                }, 2200);
+            }
+
+            // Current year in footer.
+            const year = document.getElementById("currentYear");
+            if (year) year.textContent = new Date().getFullYear();
+        });
+    </script>
+
+</body>
+
+</html>
