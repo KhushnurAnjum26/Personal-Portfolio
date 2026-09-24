@@ -428,7 +428,227 @@
     </div>
 </section>
 
+<!-- PROJECTS / SLIDER -->
+    <section id="work" class="max-w-6xl mx-auto px-6 md:px-10 py-16 md:py-24">
+        <div class="flex items-end justify-between mb-10">
+            <div>
+                <p class="eyebrow uppercase text-xs text-leafdark font-medium mb-4">— Selected Work</p>
+                <h2 class="font-display text-3xl md:text-4xl">Projects</h2>
+            </div>
+            <div class="hidden md:flex gap-2">
+                <button id="prevBtn" aria-label="Previous project"
+                    class="btn btn-circle btn-sm bg-transparent border border-line hover:bg-leaf hover:border-leaf">‹</button>
+                <button id="nextBtn" aria-label="Next project"
+                    class="btn btn-circle btn-sm bg-transparent border border-line hover:bg-leaf hover:border-leaf">›</button>
+            </div>
+        </div>
 
+        <div id="carousel" class="carousel carousel-track w-full gap-6 overflow-x-auto pb-4 snap-x snap-mandatory">
+        </div>
+        <div id="dots" class="flex md:hidden justify-center gap-2 mt-2"></div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements" class="max-w-6xl mx-auto px-6 md:px-10 py-12 md:py-16">
+        <style>
+            .ach-filter {
+                transition: all .2s ease;
+            }
+
+            .ach-filter.active {
+                background: #14181B;
+                color: #fff;
+                border-color: #14181B;
+            }
+
+            .ach-filter:not(.active):hover {
+                border-color: #5FCF4A;
+                background: rgba(95, 207, 74, .1);
+            }
+
+            .ach-card {
+                animation: achFade .35s ease both;
+            }
+
+            @keyframes achFade {
+                from {
+                    opacity: 0;
+                    transform: translateY(6px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: none;
+                }
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                .ach-card {
+                    animation: none;
+                }
+            }
+        </style>
+
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-8">
+            <div>
+                <p class="eyebrow uppercase text-xs text-leafdark font-medium mb-4">— Recognition</p>
+                <h2 class="font-display text-3xl md:text-4xl">Achievements</h2>
+            </div>
+            <div id="achFilters" class="flex flex-wrap gap-2" role="group" aria-label="Filter achievements">
+                <button class="ach-filter active px-4 py-1.5 rounded-full border border-line text-sm"
+                    data-filter="all">All</button>
+                <button class="ach-filter px-4 py-1.5 rounded-full border border-line text-sm"
+                    data-filter="competitions">Competitions</button>
+                <button class="ach-filter px-4 py-1.5 rounded-full border border-line text-sm"
+                    data-filter="hackathons">Hackathons</button>
+                <button class="ach-filter px-4 py-1.5 rounded-full border border-line text-sm"
+                    data-filter="volunteer">Volunteer</button>
+                <button class="ach-filter px-4 py-1.5 rounded-full border border-line text-sm"
+                    data-filter="language">Language</button>
+            </div>
+        </div>
+
+        <div id="achGrid" class="grid md:grid-cols-2 gap-4"></div>
+
+        <!-- DETAIL / CERTIFICATE POP-UP -->
+        <dialog id="achModal" class="modal">
+            <div class="modal-box bg-paper rounded-2xl max-w-2xl p-3">
+                <form method="dialog"><button
+                        class="btn btn-sm btn-circle absolute right-3 top-3 z-10 bg-white/90 border-line">✕</button>
+                </form>
+                <div id="achModalImgs" class="space-y-2"></div>
+                <div class="p-6">
+                    <div class="flex items-center gap-2 mb-3">
+                        <span id="achModalResult"
+                            class="badge border-none bg-leaf/20 text-ink text-xs font-medium"></span>
+                        <span id="achModalYear" class="eyebrow uppercase text-xs text-muted"></span>
+                    </div>
+                    <h3 id="achModalTitle" class="font-display text-2xl mb-1"></h3>
+                    <p id="achModalOrg" class="text-sm text-leafdark font-medium mb-3"></p>
+                    <p id="achModalDesc" class="text-sm text-muted leading-relaxed"></p>
+                    <a id="achModalLink" href="#" target="_blank" rel="noopener"
+                        class="hidden mt-4 text-sm text-leafdark font-medium hover:underline"></a>
+                </div>
+            </div>
+            <form method="dialog" class="modal-backdrop"><button>close</button></form>
+        </dialog>
+
+        <script>
+
+            const achievements = [
+                 {
+                    category: 'competitions',
+                    title: 'Prothom Alo Bhasha Protijog',
+                    org: 'Prothom Alo',
+                    year: '2018',
+                    result: 'Winner',
+                    description: 'Won the language competition, placing 3rd in the regional round.',
+                    certs: ['assets/prothomalo.jpg'],
+                    link: '', linkLabel: ''
+                },
+                {
+                    category: 'competitions',
+                    title: 'English Olympiad — Regional',
+                    org: '',
+                    year: '2018',
+                    result: '3rd Place',
+                    description: 'Secured third position in the regional round of the English Olympiad.',
+                    certs: [],
+                    link: '', linkLabel: ''
+                },
+                {
+                    category: 'competitions',
+                    title: 'Inter-College Handball Championship',
+                    org: '',
+                    year: '2018',
+                    result: 'Champion',
+                    description: 'Won the inter-college handball championship with my team.',
+                    certs: [],
+                    link: '', linkLabel: ''
+                },
+                {
+                    category: 'hackathons',
+                    title: 'IIUC CSE Fest — Datathon',
+                    org: 'International Islamic University Chittagong',
+                    year: '2026',
+                    result: 'Participant',
+                    description: 'Multimodal disaster severity classification. Reached 74% on the public leaderboard (weighted F1) with a MobileNetV2 + multilingual BERT model.',
+                    certs: ['assets/datathon.jpg'],
+                },
+               
+                {
+                    category: 'volunteer',
+                    title: 'Volunteer — Leads Academy',
+                    org: 'Leads Academy',
+                    year: '',
+                    result: 'Volunteer',
+                    description: 'Add your role, dates, and what you contributed here.',
+                    certs: ['assets/volunteer.jpg'],
+                    link: '', linkLabel: ''
+                },
+                {
+                    category: 'language',
+                    title: 'First Step Korean',
+                    org: 'Yonsei University · Coursera',
+                    year: '2020',
+                    result: 'Certified',
+                    description: 'Online non-credit course authorized by Yonsei University and offered through Coursera. Taught by Prof. Seung Hae Kang (Korean Language Education as a Foreign Language). Completed Nov 30, 2020.',
+                    certs: ['assets/korean.jpg'],
+                    link: 'https://coursera.org/verify/K2W7E89JRBGH',
+                    linkLabel: 'Verify on Coursera'
+                },
+            ];
+
+            const achIcons = { competitions: '🏅', hackathons: '💻', volunteer: '🤝' };
+
+            const achGrid = document.getElementById('achGrid');
+            achGrid.innerHTML = achievements.map((a, i) => `
+      <button type="button" data-cat="${a.category}" data-i="${i}"
+        class="ach-card text-left flex gap-4 items-center border border-line rounded-2xl bg-white p-4 hover:-translate-y-0.5 hover:shadow-md hover:border-leaf transition duration-300">
+        <div class="relative w-20 h-20 flex-none rounded-xl bg-leaf/15 overflow-hidden flex items-center justify-center text-2xl">
+          ${achIcons[a.category] || '⭐'}
+          ${a.certs && a.certs[0] ? `<img src="${a.certs[0]}" alt="Certificate: ${a.title}" loading="lazy" class="absolute inset-0 w-full h-full object-cover" onerror="this.remove()">` : ''}
+        </div>
+        <div class="min-w-0 flex-1">
+          <div class="flex items-center gap-2 mb-1">
+            ${a.result ? `<span class="badge badge-sm border-none bg-leaf/20 text-ink text-[11px] font-medium">${a.result}</span>` : ''}
+            ${a.year ? `<span class="text-xs text-muted">${a.year}</span>` : ''}
+            ${a.certs && a.certs.length ? `<span class="text-xs text-leafdark ml-auto">📄 Certificate</span>` : ''}
+          </div>
+          <h4 class="font-display text-base leading-snug truncate">${a.title}</h4>
+          ${a.org ? `<p class="text-xs text-leafdark truncate">${a.org}</p>` : ''}
+          ${a.description ? `<p class="text-xs text-muted leading-relaxed mt-1 line-clamp-2">${a.description}</p>` : ''}
+        </div>
+      </button>`).join('');
+
+            // Filtering
+            const achButtons = document.querySelectorAll('.ach-filter');
+            const achCards = achGrid.querySelectorAll('.ach-card');
+            achButtons.forEach(btn => btn.addEventListener('click', () => {
+                const f = btn.dataset.filter;
+                achButtons.forEach(b => b.classList.toggle('active', b === btn));
+                achCards.forEach(c => c.classList.toggle('hidden', !(f === 'all' || c.dataset.cat === f)));
+            }));
+
+            // Pop-up
+            const achModal = document.getElementById('achModal');
+            achCards.forEach(card => card.addEventListener('click', () => {
+                const a = achievements[card.dataset.i];
+                document.getElementById('achModalImgs').innerHTML =
+                    (a.certs || []).map(src => `<img src="${src}" alt="Certificate: ${a.title}" class="w-full object-contain max-h-[60vh] bg-white" onerror="this.remove()">`).join('');
+                document.getElementById('achModalResult').textContent = a.result || '';
+                document.getElementById('achModalResult').classList.toggle('hidden', !a.result);
+                document.getElementById('achModalYear').textContent = a.year || '';
+                document.getElementById('achModalTitle').textContent = a.title;
+                document.getElementById('achModalOrg').textContent = a.org || '';
+                document.getElementById('achModalDesc').textContent = a.description || '';
+                const l = document.getElementById('achModalLink');
+                l.classList.toggle('hidden', !a.link);
+                if (a.link) { l.href = a.link; l.textContent = (a.linkLabel || 'View') + ' →'; }
+                achModal.showModal();
+            }));
+        </script>
+    </section>
     
 
     
