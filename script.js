@@ -255,7 +255,7 @@ const projectData = [
         body: 'Shoppers Hub is an e-commerce web application that allows users to browse products, view product details, manage wishlists and shopping carts, and proceed through a checkout flow.',
         tags: ['Full-Stack', 'E-Commerce', 'Web'],
         github: 'https://github.com/KhushnurAnjum26/Ecommerce-website',
-        live: '#',
+        live: 'https://khushnuranjum26.github.io/Ecommerce-website/',
         image: 'assets/ecom.png',
         accent: 'from-leafdark to-leaf',
         label: 'Shop'
@@ -268,7 +268,7 @@ const projectData = [
         body: 'Seat Booking App is an extended bus ticket reservation project that focuses on seat selection, booking management, and additional reservation functionality.',
         tags: ['Assignment', 'Booking', 'Web'],
         github: 'https://github.com/KhushnurAnjum26/Bus_ticket_assgnment5',
-        live: '#',
+        live: 'https://khushnuranjum26.github.io/Bus_ticket_assgnment5/',
         image: 'assets/nova-travels.png',
         accent: 'from-ink to-ink/80',
         label: 'Bus'
@@ -281,7 +281,7 @@ const projectData = [
         body: 'E-Ticket Resolver is an academic assignment developed to demonstrate software development concepts through an electronic ticketing system.',
         tags: ['Assignment', 'Java', 'Software'],
         github: 'https://github.com/KhushnurAnjum26/New-Assignment2',
-        live: '#',
+        live: 'https://khushnuranjum26.github.io/New-Assignment2/',
         image: 'assets/task-resolve-counter.png',
         accent: 'from-ink to-ink/80',
         label: 'T'
@@ -452,3 +452,5 @@ requestAnimationFrame(() => {
         if (heroPhotoCol) heroPhotoCol.classList.add('is-visible');
     });
 });
+
+
