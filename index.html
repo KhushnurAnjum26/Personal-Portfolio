@@ -150,45 +150,77 @@
             <div class="flex flex-wrap items-center gap-4 sm:gap-6 mb-10">
 
                 <!-- Resume dropdown -->
-                <div id="resumeWrap" class="relative">
-                    <button id="resumeBtn" type="button" aria-haspopup="true" aria-expanded="false"
-                        class="btn rounded-full bg-leafdark hover:bg-white border-2 border-leaf hover:border-black normal-case font-medium px-7 gap-2 text-black hover:text-leafdark">
-                        Resume
-                        <svg id="resumeChevron" class="w-3.5 h-3.5 transition-transform duration-200"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path d="m6 9 6 6 6-6" />
-                        </svg>
-                    </button>
+<div id="resumeWrap" class="relative">
 
-                    <div id="resumeMenu" role="menu"
-                        class="hidden absolute left-0 top-full mt-2 w-52 z-30 rounded-2xl border border-line bg-white shadow-lg p-2">
-                        <a href="assets/cv.pdf" target="_blank" rel="noopener" role="menuitem"
-                            class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm hover:bg-leaf/10 transition-colors">
-                            <span
-                                class="w-8 h-8 rounded-full bg-leaf/15 text-leafdark flex items-center justify-center">
-                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
-                                    <circle cx="12" cy="12" r="3" />
-                                </svg>
-                            </span>
-                            View resume
-                        </a>
-                        <a href="assets/cv.pdf" download="Tashme_Resume.pdf" role="menuitem"
-                            class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm hover:bg-leaf/10 transition-colors">
-                            <span
-                                class="w-8 h-8 rounded-full bg-leaf/15 text-leafdark flex items-center justify-center">
-                                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M12 3v12M7 10l5 5 5-5M4 20h16" />
-                                </svg>
-                            </span>
-                            Download PDF
-                        </a>
-                    </div>
-                </div>
+    <button
+        id="resumeBtn"
+        type="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+        aria-controls="resumeMenu"
+        class="btn rounded-full bg-leafdark hover:bg-white border-2 border-leaf hover:border-black normal-case font-medium px-7 gap-2 text-black hover:text-leafdark">
 
+        Resume
+
+        <svg
+            id="resumeChevron"
+            class="w-3.5 h-3.5 transition-transform duration-200"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            stroke-linejoin="round">
+
+            <path d="m6 9 6 6 6-6" />
+        </svg>
+    </button>
+
+    <div
+        id="resumeMenu"
+        role="menu"
+        aria-hidden="true"
+        hidden
+        class="hidden absolute left-0 top-full mt-2 w-52 z-30 rounded-2xl border border-line bg-white shadow-lg p-2">
+
+        <a
+            href="assets/cv.pdf"
+            target="_blank"
+            rel="noopener"
+            role="menuitem"
+            class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm hover:bg-leaf/10 transition-colors">
+
+            <span class="w-8 h-8 rounded-full bg-leaf/15 text-leafdark flex items-center justify-center">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
+                    <circle cx="12" cy="12" r="3" />
+                </svg>
+            </span>
+
+            View resume
+        </a>
+
+        <a
+            href="assets/cv.pdf"
+            download="Tashme_Resume.pdf"
+            role="menuitem"
+            class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm hover:bg-leaf/10 transition-colors">
+
+            <span class="w-8 h-8 rounded-full bg-leaf/15 text-leafdark flex items-center justify-center">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3v12M7 10l5 5 5-5M4 20h16" />
+                </svg>
+            </span>
+
+            Download PDF
+        </a>
+
+    </div>
+</div>
                 <a href="#contact"
                     class="btn rounded-full bg-white hover:bg-leafdark border-leaf hover:border-black normal-case font-medium px-7 text-leafdark hover:text-black">
                     Contact

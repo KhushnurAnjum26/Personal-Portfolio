@@ -10,58 +10,187 @@ function syncToggle() {
     toggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
     toggle.setAttribute('aria-pressed', dark);
 }
+
 syncToggle();
+
 toggle.addEventListener('click', function () {
     var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+
     root.classList.add('theme-switching');
     root.setAttribute('data-theme', next);
-    try { localStorage.setItem('theme', next); } catch (e) { }
+
+    try {
+        localStorage.setItem('theme', next);
+    } catch (e) { }
+
     syncToggle();
-    setTimeout(function () { root.classList.remove('theme-switching'); }, 350);
+
+    setTimeout(function () {
+        root.classList.remove('theme-switching');
+    }, 350);
 });
 
 new MutationObserver(function () {
     menuBtnHeader.setAttribute('aria-expanded', menuEl.classList.contains('open'));
-}).observe(menuEl, { attributes: true, attributeFilter: ['class'] });
+}).observe(menuEl, {
+    attributes: true,
+    attributeFilter: ['class']
+});
 
-function onScroll() { header.classList.toggle('is-scrolled', window.scrollY > 8); }
+function onScroll() {
+    header.classList.toggle('is-scrolled', window.scrollY > 8);
+}
+
 onScroll();
 window.addEventListener('scroll', onScroll, { passive: true });
 
 var spyLinks = document.querySelectorAll('[data-spy]');
+
 var spy = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
         if (!e.isIntersecting) return;
+
         spyLinks.forEach(function (a) {
-            a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);
+            a.classList.toggle(
+                'active',
+                a.getAttribute('href') === '#' + e.target.id
+            );
         });
     });
-}, { rootMargin: '-45% 0px -50% 0px' });
+}, {
+    rootMargin: '-45% 0px -50% 0px'
+});
+
 ['top', 'about', 'work', 'achievements', 'contact'].forEach(function (id) {
     var el = document.getElementById(id);
     if (el) spy.observe(el);
 });
 
-// ---- Resume dropdown ----
-(function () {
-    const wrap = document.getElementById('resumeWrap');
-    const btn = document.getElementById('resumeBtn');
-    const menu = document.getElementById('resumeMenu');
-    const chevron = document.getElementById('resumeChevron');
 
-    function setOpen(open) {
-        menu.classList.toggle('hidden', !open);
-        btn.setAttribute('aria-expanded', open);
-        chevron.classList.toggle('rotate-180', open);
+// =====================================================
+// RESUME DROPDOWN - FIXED VERSION
+// =====================================================
+
+(function initResumeDropdown() {
+
+    function setupResumeDropdown() {
+
+        const wrap = document.getElementById('resumeWrap');
+        const btn = document.getElementById('resumeBtn');
+        const menu = document.getElementById('resumeMenu');
+        const chevron = document.getElementById('resumeChevron');
+
+        if (!wrap || !btn || !menu) {
+            console.error('Resume dropdown elements not found.');
+            return;
+        }
+
+        btn.setAttribute('aria-controls', 'resumeMenu');
+        btn.setAttribute('aria-expanded', 'false');
+
+        menu.setAttribute('aria-hidden', 'true');
+
+        // Open or close dropdown
+        function setOpen(open) {
+
+            menu.hidden = !open;
+
+            menu.classList.toggle('hidden', !open);
+
+            menu.setAttribute(
+                'aria-hidden',
+                String(!open)
+            );
+
+            btn.setAttribute(
+                'aria-expanded',
+                String(open)
+            );
+
+            if (chevron) {
+                chevron.classList.toggle(
+                    'rotate-180',
+                    open
+                );
+            }
+        }
+
+        // Initially closed
+        setOpen(false);
+
+        // Resume button click
+        btn.addEventListener('click', function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            const isOpen =
+                btn.getAttribute('aria-expanded') === 'true';
+
+            setOpen(!isOpen);
+
+        });
+
+        // Prevent clicks inside dropdown from closing it
+        wrap.addEventListener('click', function (event) {
+            event.stopPropagation();
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', function (event) {
+
+            if (!wrap.contains(event.target)) {
+                setOpen(false);
+            }
+
+        });
+
+        // Close when pressing Escape
+        document.addEventListener('keydown', function (event) {
+
+            if (
+                event.key === 'Escape' &&
+                btn.getAttribute('aria-expanded') === 'true'
+            ) {
+
+                setOpen(false);
+                btn.focus();
+
+            }
+
+        });
+
+        // Close after selecting a dropdown link
+        menu.querySelectorAll('a').forEach(function (link) {
+
+            link.addEventListener('click', function () {
+                setOpen(false);
+            });
+
+        });
+
     }
 
-    btn.addEventListener('click', () => setOpen(menu.classList.contains('hidden')));
-    document.addEventListener('click', e => { if (!wrap.contains(e.target)) setOpen(false); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
-    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+    // Wait until HTML elements are loaded
+    if (document.readyState === 'loading') {
+
+        document.addEventListener(
+            'DOMContentLoaded',
+            setupResumeDropdown,
+            { once: true }
+        );
+
+    } else {
+
+        setupResumeDropdown();
+
+    }
+
 })();
 
+
 // ---- Achievements ----
+
 const achievements = [
     {
         category: 'competitions',
@@ -71,7 +200,8 @@ const achievements = [
         result: 'Winner',
         description: 'Won the language competition, placing 3rd in the regional round.',
         certs: ['assets/prothomalo.jpg'],
-        link: '', linkLabel: ''
+        link: '',
+        linkLabel: ''
     },
     {
         category: 'competitions',
@@ -81,7 +211,8 @@ const achievements = [
         result: '3rd Place',
         description: 'Secured third position in the regional round of the English Olympiad.',
         certs: [],
-        link: '', linkLabel: ''
+        link: '',
+        linkLabel: ''
     },
     {
         category: 'competitions',
@@ -91,7 +222,8 @@ const achievements = [
         result: 'Champion',
         description: 'Won the inter-college handball championship with my team.',
         certs: [],
-        link: '', linkLabel: ''
+        link: '',
+        linkLabel: ''
     },
     {
         category: 'hackathons',
@@ -110,7 +242,8 @@ const achievements = [
         result: 'Volunteer',
         description: 'Add your role, dates, and what you contributed here.',
         certs: ['assets/volunteer.jpg'],
-        link: '', linkLabel: ''
+        link: '',
+        linkLabel: ''
     },
     {
         category: 'language',
@@ -125,128 +258,282 @@ const achievements = [
     },
 ];
 
-const achIcons = { competitions: '🏅', hackathons: '💻', volunteer: '🤝' };
+const achIcons = {
+    competitions: '🏅',
+    hackathons: '💻',
+    volunteer: '🤝'
+};
 
 const achGrid = document.getElementById('achGrid');
+
 achGrid.innerHTML = achievements.map((a, i) => `
   <button type="button" data-cat="${a.category}" data-i="${i}"
     class="ach-card text-left flex gap-4 items-center border border-line rounded-2xl bg-white p-4 hover:-translate-y-0.5 hover:shadow-md hover:border-leaf transition duration-300">
+
     <div class="relative w-20 h-20 flex-none rounded-xl bg-leaf/15 overflow-hidden flex items-center justify-center text-2xl">
       ${achIcons[a.category] || '⭐'}
-      ${a.certs && a.certs[0] ? `<img src="${a.certs[0]}" alt="Certificate: ${a.title}" loading="lazy" class="absolute inset-0 w-full h-full object-cover" onerror="this.remove()">` : ''}
+
+      ${a.certs && a.certs[0] ? `
+        <img src="${a.certs[0]}"
+             alt="Certificate: ${a.title}"
+             loading="lazy"
+             class="absolute inset-0 w-full h-full object-cover"
+             onerror="this.remove()">
+      ` : ''}
     </div>
+
     <div class="min-w-0 flex-1">
       <div class="flex items-center gap-2 mb-1">
-        ${a.result ? `<span class="badge badge-sm border-none bg-leaf/20 text-ink text-[11px] font-medium">${a.result}</span>` : ''}
-        ${a.year ? `<span class="text-xs text-muted">${a.year}</span>` : ''}
-        ${a.certs && a.certs.length ? `<span class="text-xs text-leafdark ml-auto">📄 Certificate</span>` : ''}
+
+        ${a.result ? `
+          <span class="badge badge-sm border-none bg-leaf/20 text-ink text-[11px] font-medium">
+            ${a.result}
+          </span>
+        ` : ''}
+
+        ${a.year ? `
+          <span class="text-xs text-muted">${a.year}</span>
+        ` : ''}
+
+        ${a.certs && a.certs.length ? `
+          <span class="text-xs text-leafdark ml-auto">📄 Certificate</span>
+        ` : ''}
+
       </div>
-      <h4 class="font-display text-base leading-snug truncate">${a.title}</h4>
-      ${a.org ? `<p class="text-xs text-leafdark truncate">${a.org}</p>` : ''}
-      ${a.description ? `<p class="text-xs text-muted leading-relaxed mt-1 line-clamp-2">${a.description}</p>` : ''}
+
+      <h4 class="font-display text-base leading-snug truncate">
+        ${a.title}
+      </h4>
+
+      ${a.org ? `
+        <p class="text-xs text-leafdark truncate">${a.org}</p>
+      ` : ''}
+
+      ${a.description ? `
+        <p class="text-xs text-muted leading-relaxed mt-1 line-clamp-2">
+          ${a.description}
+        </p>
+      ` : ''}
     </div>
-  </button>`).join('');
+
+  </button>
+`).join('');
+
 
 const achButtons = document.querySelectorAll('.ach-filter');
 const achCards = achGrid.querySelectorAll('.ach-card');
+
 achButtons.forEach(btn => btn.addEventListener('click', () => {
+
     const f = btn.dataset.filter;
-    achButtons.forEach(b => b.classList.toggle('active', b === btn));
-    achCards.forEach(c => c.classList.toggle('hidden', !(f === 'all' || c.dataset.cat === f)));
+
+    achButtons.forEach(b => {
+        b.classList.toggle('active', b === btn);
+    });
+
+    achCards.forEach(c => {
+        c.classList.toggle(
+            'hidden',
+            !(f === 'all' || c.dataset.cat === f)
+        );
+    });
+
 }));
+
 
 const achModal = document.getElementById('achModal');
+
 achCards.forEach(card => card.addEventListener('click', () => {
+
     const a = achievements[card.dataset.i];
+
     document.getElementById('achModalImgs').innerHTML =
-        (a.certs || []).map(src => `<img src="${src}" alt="Certificate: ${a.title}" class="w-full object-contain max-h-[60vh] bg-white" onerror="this.remove()">`).join('');
+        (a.certs || []).map(src => `
+            <img src="${src}"
+                 alt="Certificate: ${a.title}"
+                 class="w-full object-contain max-h-[60vh] bg-white"
+                 onerror="this.remove()">
+        `).join('');
+
     document.getElementById('achModalResult').textContent = a.result || '';
-    document.getElementById('achModalResult').classList.toggle('hidden', !a.result);
+
+    document.getElementById('achModalResult')
+        .classList.toggle('hidden', !a.result);
+
     document.getElementById('achModalYear').textContent = a.year || '';
+
     document.getElementById('achModalTitle').textContent = a.title;
+
     document.getElementById('achModalOrg').textContent = a.org || '';
+
     document.getElementById('achModalDesc').textContent = a.description || '';
+
     const l = document.getElementById('achModalLink');
+
     l.classList.toggle('hidden', !a.link);
-    if (a.link) { l.href = a.link; l.textContent = (a.linkLabel || 'View') + ' →'; }
+
+    if (a.link) {
+        l.href = a.link;
+        l.textContent = (a.linkLabel || 'View') + ' →';
+    }
+
     achModal.showModal();
+
 }));
 
+
 // ---- Contact form ----
+
 (function () {
+
     const form = document.getElementById('contactForm');
     const btn = document.getElementById('cfBtn');
     const btnText = document.getElementById('cfBtnText');
     const status = document.getElementById('cfStatus');
 
     function showStatus(msg, ok) {
+
         status.textContent = msg;
+
         status.className = 'text-sm rounded-xl px-4 py-3 ' +
             (ok ? 'bg-leaf/15 text-ink' : 'bg-red-50 text-red-700');
+
     }
 
     form.addEventListener('submit', async (e) => {
+
         e.preventDefault();
 
-        if (!form.checkValidity()) { form.reportValidity(); return; }
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
 
         const data = Object.fromEntries(new FormData(form));
+
         if (!data.subject || !data.subject.trim()) {
             data.subject = 'New portfolio message from ' + data.name;
         }
 
         btn.disabled = true;
         btnText.textContent = 'Sending…';
-        btn.insertAdjacentHTML('afterbegin', '<span id="cfSpin" class="loading loading-spinner loading-sm"></span>');
+
+        btn.insertAdjacentHTML(
+            'afterbegin',
+            '<span id="cfSpin" class="loading loading-spinner loading-sm"></span>'
+        );
+
         status.className = 'hidden';
 
         try {
+
             const res = await fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
                 body: JSON.stringify(data)
             });
+
             const json = await res.json();
 
             if (res.ok && json.success) {
-                showStatus('Thanks! Your message was sent. I’ll get back to you soon.', true);
+
+                showStatus(
+                    'Thanks! Your message was sent. I’ll get back to you soon.',
+                    true
+                );
+
                 form.reset();
+
             } else {
-                showStatus('Something went wrong. Please try again or email me directly.', false);
+
+                showStatus(
+                    'Something went wrong. Please try again or email me directly.',
+                    false
+                );
+
             }
+
         } catch (err) {
-            showStatus('Network error. Please check your connection or email me directly.', false);
+
+            showStatus(
+                'Network error. Please check your connection or email me directly.',
+                false
+            );
+
         } finally {
+
             const spin = document.getElementById('cfSpin');
+
             if (spin) spin.remove();
+
             btn.disabled = false;
             btnText.textContent = 'Send message';
+
         }
+
     });
+
 })();
 
+
 // ---- Mobile menu ----
+
 const menuBtn = document.getElementById('menuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
-menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('open'));
-mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+});
+
+mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+    });
+});
+
 
 // ---- Skill bar reveal ----
+
 const bars = document.querySelectorAll('.skill-bar-fill');
+
 const skillIo = new IntersectionObserver((entries) => {
+
     entries.forEach(e => {
+
         if (e.isIntersecting) {
-            bars.forEach(b => { b.style.width = b.dataset.pct + '%'; });
-            document.querySelectorAll('.skill-pct').forEach((el, i) => { el.textContent = bars[i].dataset.pct + '%'; });
+
+            bars.forEach(b => {
+                b.style.width = b.dataset.pct + '%';
+            });
+
+            document.querySelectorAll('.skill-pct').forEach((el, i) => {
+                el.textContent = bars[i].dataset.pct + '%';
+            });
+
             skillIo.disconnect();
+
         }
+
     });
-}, { threshold: 0.3 });
+
+}, {
+    threshold: 0.3
+});
+
 const skillsSection = document.getElementById('skills');
-if (skillsSection) skillIo.observe(skillsSection);
+
+if (skillsSection) {
+    skillIo.observe(skillsSection);
+}
+
 
 // ---- Project data ----
+
 const projectData = [
+
     {
         key: 'Shoppers Hub',
         title: 'Shoppers Hub',
@@ -260,6 +547,7 @@ const projectData = [
         accent: 'from-leafdark to-leaf',
         label: 'Shop'
     },
+
     {
         key: 'Nova-Travels',
         title: 'Nova-Travels',
@@ -273,6 +561,7 @@ const projectData = [
         accent: 'from-ink to-ink/80',
         label: 'Bus'
     },
+
     {
         key: 'E-Ticket Resolver',
         title: 'E-Ticket Resolver',
@@ -286,6 +575,7 @@ const projectData = [
         accent: 'from-ink to-ink/80',
         label: 'T'
     },
+
     {
         key: 'Kali based Bus Ticket reservation System',
         title: 'Kali based Bus Ticket reservation System',
@@ -299,6 +589,7 @@ const projectData = [
         accent: 'from-leafdark to-leaf',
         label: 'Bus'
     },
+
     {
         key: 'Diabetes Detection Model Using ML',
         title: 'Diabetes Detection Model Using ML',
@@ -312,6 +603,7 @@ const projectData = [
         accent: 'from-ink to-ink/80',
         label: 'ML'
     },
+
     {
         key: 'PrismNet For Medical Image Segmentation',
         title: 'PRISM-Net for Medical Image Segmentation',
@@ -325,87 +617,208 @@ const projectData = [
         accent: 'from-leafdark to-leaf',
         label: 'CV'
     }
+
 ];
 
+
+// ---- Project carousel ----
+
 const carousel = document.getElementById('carousel');
+
 carousel.innerHTML = projectData.map((p, i) => `
 <article class="carousel-item snap-start w-[85%] sm:w-[60%] lg:w-[32%] flex-none border border-line rounded-2xl overflow-hidden bg-white flex flex-col">
+
   <div class="w-full aspect-video overflow-hidden bg-gray-100">
-    <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover" loading="lazy">
+    <img src="${p.image}"
+         alt="${p.title}"
+         class="w-full h-full object-cover"
+         loading="lazy">
   </div>
+
   <div class="p-6 flex flex-col flex-1">
-    <h3 class="font-display text-xl mb-2">${p.title}</h3>
-    <p class="text-sm text-muted leading-relaxed mb-4 flex-1">${p.short}</p>
+
+    <h3 class="font-display text-xl mb-2">
+        ${p.title}
+    </h3>
+
+    <p class="text-sm text-muted leading-relaxed mb-4 flex-1">
+        ${p.short}
+    </p>
+
     <div class="flex flex-wrap gap-2 mb-5">
-      ${p.tags.map(t => `<span class="badge badge-outline border-line text-ink/70">${t}</span>`).join('')}
+      ${p.tags.map(t => `
+        <span class="badge badge-outline border-line text-ink/70">
+            ${t}
+        </span>
+      `).join('')}
     </div>
+
     <div class="flex flex-wrap gap-2">
-      <a href="${p.github}" class="btn btn-xs rounded-full bg-ink hover:bg-ink/85 border-none text-white normal-case">GitHub</a>
-      <a href="${p.live}" class="btn btn-xs rounded-full bg-leaf hover:bg-leafdark border-none text-ink normal-case">Live link</a>
-      <button class="quickview-btn btn btn-xs rounded-full bg-transparent border border-line normal-case" data-project="${i}">Quick view</button>
+
+      <a href="${p.github}"
+         class="btn btn-xs rounded-full bg-ink hover:bg-ink/85 border-none text-white normal-case">
+         GitHub
+      </a>
+
+      <a href="${p.live}"
+         class="btn btn-xs rounded-full bg-leaf hover:bg-leafdark border-none text-ink normal-case">
+         Live link
+      </a>
+
+      <button class="quickview-btn btn btn-xs rounded-full bg-transparent border border-line normal-case"
+              data-project="${i}">
+          Quick view
+      </button>
+
     </div>
+
   </div>
+
 </article>
 `).join('');
+
 
 const track = document.getElementById('carousel');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const dotsWrap = document.getElementById('dots');
+
 const items = track.querySelectorAll('.carousel-item');
 
 items.forEach((item, i) => {
+
     const dot = document.createElement('button');
+
     dot.className = 'w-2 h-2 rounded-full bg-line';
-    dot.setAttribute('aria-label', 'Go to project ' + (i + 1));
-    dot.addEventListener('click', () => item.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' }));
+
+    dot.setAttribute(
+        'aria-label',
+        'Go to project ' + (i + 1)
+    );
+
+    dot.addEventListener('click', () => {
+        item.scrollIntoView({
+            behavior: 'smooth',
+            inline: 'start',
+            block: 'nearest'
+        });
+    });
+
     dotsWrap.appendChild(dot);
+
 });
+
 const dots = dotsWrap.querySelectorAll('button');
 
+
 function updateDots() {
+
     const trackRect = track.getBoundingClientRect();
-    let closest = 0, closestDist = Infinity;
+
+    let closest = 0;
+    let closestDist = Infinity;
+
     items.forEach((item, i) => {
-        const dist = Math.abs(item.getBoundingClientRect().left - trackRect.left);
-        if (dist < closestDist) { closestDist = dist; closest = i; }
+
+        const dist = Math.abs(
+            item.getBoundingClientRect().left - trackRect.left
+        );
+
+        if (dist < closestDist) {
+            closestDist = dist;
+            closest = i;
+        }
+
     });
-    dots.forEach((d, i) => d.classList.toggle('bg-leaf', i === closest));
+
+    dots.forEach((d, i) => {
+        d.classList.toggle('bg-leaf', i === closest);
+    });
+
 }
-track.addEventListener('scroll', () => window.requestAnimationFrame(updateDots));
+
+track.addEventListener('scroll', () => {
+    window.requestAnimationFrame(updateDots);
+});
+
 updateDots();
 
+
 function scrollByCard(dir) {
-    const cardWidth = items[0].getBoundingClientRect().width + 24;
-    track.scrollBy({ left: dir * cardWidth, behavior: 'smooth' });
+
+    const cardWidth =
+        items[0].getBoundingClientRect().width + 24;
+
+    track.scrollBy({
+        left: dir * cardWidth,
+        behavior: 'smooth'
+    });
+
 }
+
 prevBtn.addEventListener('click', () => scrollByCard(-1));
 nextBtn.addEventListener('click', () => scrollByCard(1));
 
+
+// ---- Quick view modal ----
+
 const modal = document.getElementById('quickviewModal');
+
 document.querySelectorAll('.quickview-btn').forEach(btn => {
+
     btn.addEventListener('click', () => {
+
         const p = projectData[btn.dataset.project];
-        document.getElementById('qvEyebrow').textContent = '— ' + p.eyebrow;
+
+        document.getElementById('qvEyebrow').textContent =
+            '— ' + p.eyebrow;
+
         document.getElementById('qvTitle').textContent = p.title;
+
         document.getElementById('qvBody').textContent = p.body;
+
         document.getElementById('qvGithub').href = p.github;
+
         document.getElementById('qvLive').href = p.live;
+
         const tagsWrap = document.getElementById('qvTags');
+
         tagsWrap.innerHTML = '';
+
         p.tags.forEach(t => {
+
             const span = document.createElement('span');
-            span.className = 'badge badge-outline border-line text-ink/70';
+
+            span.className =
+                'badge badge-outline border-line text-ink/70';
+
             span.textContent = t;
+
             tagsWrap.appendChild(span);
+
         });
+
         modal.showModal();
+
     });
+
 });
 
-document.getElementById('toTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// ---- Back to top ----
+
+document.getElementById('toTop').addEventListener('click', () => {
+
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+
+});
+
 
 // ---- Scroll-reveal animation ----
+
 const revealSelectors = [
     '#about .grid.md\\:grid-cols-2 > div',
     '#skills .border.border-line',
@@ -413,44 +826,84 @@ const revealSelectors = [
     '#achievements .ach-card',
     '#contact .border.border-line'
 ];
-const revealTargets = document.querySelectorAll(revealSelectors.join(', '));
+
+const revealTargets = document.querySelectorAll(
+    revealSelectors.join(', ')
+);
 
 revealTargets.forEach((el, i) => {
+
     el.classList.add('reveal');
-    el.style.transitionDelay = (i % 6) * 70 + 'ms';
+
+    el.style.transitionDelay =
+        (i % 6) * 70 + 'ms';
+
 });
 
 const revealObserver = new IntersectionObserver((entries) => {
+
     entries.forEach((entry) => {
+
         if (entry.isIntersecting) {
+
             entry.target.classList.add('is-visible');
+
             revealObserver.unobserve(entry.target);
+
         }
+
     });
-}, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
 
-revealTargets.forEach((el) => revealObserver.observe(el));
+}, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -10% 0px'
+});
 
-// Hero entrance: staggers in on load, no scroll needed
+revealTargets.forEach((el) => {
+    revealObserver.observe(el);
+});
+
+
+// ---- Hero entrance animation ----
+
 const heroTextCol = document.querySelector('#top > div:nth-child(1)');
 const heroPhotoCol = document.querySelector('#top > div:nth-child(2)');
 
 if (heroTextCol) {
+
     Array.from(heroTextCol.children).forEach((el, i) => {
+
         el.classList.add('reveal');
-        el.style.transitionDelay = i * 90 + 'ms';
+
+        el.style.transitionDelay =
+            i * 90 + 'ms';
+
     });
+
 }
+
 if (heroPhotoCol) {
+
     heroPhotoCol.classList.add('reveal-scale');
+
     heroPhotoCol.style.transitionDelay = '160ms';
+
 }
 
 requestAnimationFrame(() => {
+
     requestAnimationFrame(() => {
-        if (heroTextCol) heroTextCol.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
-        if (heroPhotoCol) heroPhotoCol.classList.add('is-visible');
+
+        if (heroTextCol) {
+            heroTextCol.querySelectorAll('.reveal').forEach(el => {
+                el.classList.add('is-visible');
+            });
+        }
+
+        if (heroPhotoCol) {
+            heroPhotoCol.classList.add('is-visible');
+        }
+
     });
+
 });
-
-
